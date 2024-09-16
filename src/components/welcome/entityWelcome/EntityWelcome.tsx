@@ -13,6 +13,10 @@ export default function InstitutionForm({userName, userEmail}: {userName: string
     // Handle form submission
   };
 
+  const handleClick = () => {
+    window.location.href = "/welcome/entitywelcome/onboardingvideo";
+  }
+
   return (
     <main className="flex self-stretch bg-white">
       <div className="flex flex-col flex-1 shrink justify-between w-full basis-0 min-w-[240px] max-md:max-w-full">
@@ -44,6 +48,7 @@ export default function InstitutionForm({userName, userEmail}: {userName: string
               <div className="flex flex-col mt-8 w-full text-base font-semibold">
                 <button
                   type="submit"
+                  onClick={handleClick}
                   className="overflow-hidden flex-1 shrink gap-2 self-stretch px-5 py-2.5 w-full bg-indigo-600 rounded-lg border border-indigo-600 border-solid shadow-sm min-w-[240px] text-white"
                 >
                   Continue

@@ -10,7 +10,7 @@ interface Challenge {
   text: string;
 }
 
-const InterviewChallenges: React.FC = () => {
+export default function InterviewChallenges() {
   const [selectedChallenges, setSelectedChallenges] = useState<string[]>([]);
 
   const challenges: Challenge[] = [
@@ -39,6 +39,10 @@ const InterviewChallenges: React.FC = () => {
     setSelectedChallenges(challenges.map((c) => c.text));
   };
 
+  const handleBackClick = () => {
+    window.location.href = "/onboarding/shareexperience";
+  }
+
   return (
     <main className="flex overflow-hidden flex-col bg-white">
       <div className="flex relative flex-col items-center justify-center py-14 w-full min-h-[1024px] max-md:max-w-full">
@@ -46,6 +50,7 @@ const InterviewChallenges: React.FC = () => {
           <Header
             title="Let's tackle your challenges"
             subtitle="Help us understand your interview challenges and what you want to improve."
+            onClick={handleBackClick}
           />
           <ChallengeSelector
             challenges={challenges}
@@ -59,5 +64,3 @@ const InterviewChallenges: React.FC = () => {
     </main>
   );
 };
-
-export default InterviewChallenges;

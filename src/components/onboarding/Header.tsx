@@ -1,14 +1,17 @@
+'use client';
+
 import React from "react";
 
 interface HeaderProps {
   title?: string;
   subtitle?: string;
+  onClick: () => void;
 }
 
-export default function Header({title, subtitle}: HeaderProps) {
+export default function Header({title, subtitle, onClick}: HeaderProps) {
   return (
     <div className="flex relative flex-col items-center justify-center w-full max-w-[1110px] max-md:max-w-full">
-      <button className="flex items-start self-stretch my-auto text-sm font-semibold leading-none text-black whitespace-nowrap">
+      <button onClick={onClick} className="flex items-start self-stretch my-auto text-sm font-semibold leading-none text-black whitespace-nowrap">
         <div className="flex gap-2 justify-center items-center">
           <img
             loading="lazy"

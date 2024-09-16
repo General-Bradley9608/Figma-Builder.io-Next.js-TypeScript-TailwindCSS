@@ -1,10 +1,16 @@
+'use client';
+
 import React from "react";
 import FooterImage from "@/components/onboarding/FooterImage";
 
 export default function WelcomePage() {
+  const handleClick = () => {
+    window.location.href = "/onboarding/chooseexperience";
+  };
+
   return (
     <main className="flex overflow-hidden flex-col bg-white">
-      <div className="flex relative flex-col pt-72 pb-7 w-full min-h-[1024px] max-md:pt-24 max-md:max-w-full">
+      <div className="flex relative flex-col items-center justify-center py-14 w-full min-h-[1024px] max-md:max-w-full">
         <img
           loading="lazy"
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/917addc41ee8ffd8fce8fe2b1cbcfdea287c67ed8eb87c5a4509ba27ff607cdd?placeholderIfAbsent=true&apiKey=03171c0a35c24f47becb1e98f7ef506f"
@@ -21,7 +27,7 @@ export default function WelcomePage() {
               next job interview. Ready to kickstart your journey to success?
             </p>
           </header>
-          <button className="gap-2 px-5 py-4 mt-8 max-w-full text-base font-semibold text-white bg-indigo-600 rounded-lg min-h-[48px] w-[250px]">
+          <button onClick={handleClick} className="gap-2 px-5 py-4 mt-8 max-w-full text-base font-semibold text-white bg-indigo-600 rounded-lg min-h-[48px] w-[250px]">
             Get Started
           </button>
         </div>

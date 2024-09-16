@@ -1,3 +1,5 @@
+'use client';
+
 import React from "react";
 import Header from "@/components/onboarding/Header";
 import PersonaCard from "@/components/onboarding/PersonaCard";
@@ -32,6 +34,10 @@ export default function ChooseWork({}: ChooseWorkProps) {
       hoverStyle: "hover:bg-blue-600 hover:text-white",
     },
   ];
+  
+  const handleBackClick = () => {
+    window.location.href = "/onboarding";
+  }
 
   return (
     <main className="flex overflow-hidden flex-col bg-white">
@@ -40,6 +46,7 @@ export default function ChooseWork({}: ChooseWorkProps) {
           <Header
             title="Let's get to know you"
             subtitle="We need a few details to personalize your experience"
+            onClick={handleBackClick}
           />
           <section className="flex flex-col items-center justify-center mt-44 max-w-full w-[908px] max-md:mt-10">
             <h1 className="text-7xl font-bold text-center text-black max-md:max-w-full max-md:text-4xl">

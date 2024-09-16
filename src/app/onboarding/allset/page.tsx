@@ -3,13 +3,7 @@ import React from "react";
 export default function PlayCVComponent() {
   return (
     <div className="flex overflow-hidden flex-col text-black bg-white">
-      <div className="flex relative flex-col items-center px-20 pt-16 pb-64 w-full min-h-[1024px] max-md:px-5 max-md:pb-24 max-md:max-w-full">
-        <img
-          loading="lazy"
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/917addc41ee8ffd8fce8fe2b1cbcfdea287c67ed8eb87c5a4509ba27ff607cdd?placeholderIfAbsent=true&apiKey=56fac90a92e74e049125400e70477bf1"
-          alt=""
-          className="object-cover absolute inset-0 size-full"
-        />
+      <div className="flex relative flex-col items-center justify-center px-20 pt-16 pb-64 w-full min-h-[1024px] max-md:px-5 max-md:pb-24 max-md:max-w-full">
         <div className="flex relative flex-col mb-0 max-w-full w-[715px] max-md:mb-2.5">
           <div className="flex gap-3 items-center self-center text-2xl font-bold whitespace-nowrap">
             <div className="flex shrink-0 self-stretch my-auto w-6 h-6 bg-indigo-50 rounded" />

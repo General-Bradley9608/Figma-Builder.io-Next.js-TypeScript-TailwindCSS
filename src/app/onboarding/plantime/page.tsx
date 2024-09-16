@@ -43,9 +43,22 @@ export default function PracticeTimePlanner() {
       });
     }
     else if (timeDetails.dedicatedTime === false && timeDetails.interviewTime === true) {
-      window.location.href = "/onboarding/shareexperience";
+      window.location.href = "/onboarding/allset";
     }
   };
+
+  const handleBackClick = () => {
+    if (timeDetails.dedicatedTime === false) {
+      setTimeDetails({
+        ...timeDetails,
+        dedicatedTime: true,
+        interviewTime: false,
+      });
+    }
+    else if (timeDetails.dedicatedTime === true && timeDetails.interviewTime === false) {
+      window.location.href = "/onboarding/trainingpath";
+    }
+  }
 
   return (
     <main className="flex overflow-hidden flex-col bg-white">
@@ -54,6 +67,7 @@ export default function PracticeTimePlanner() {
           <Header
             title="Plan your practice time"
             subtitle="Pick the training time that works for you"
+            onClick={handleBackClick}
           />
           {(() => {
             if (timeDetails.dedicatedTime === true) {

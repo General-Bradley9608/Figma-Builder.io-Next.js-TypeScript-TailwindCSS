@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface Challenge {
   emoji: string;
@@ -12,12 +12,17 @@ interface ChallengeSelectorProps {
   onSelectAll: () => void;
 }
 
-const ChallengeSelector: React.FC<ChallengeSelectorProps> = ({
+export default function ChallengeSelector({
   challenges,
   selectedChallenges,
   onChallengeToggle,
   onSelectAll,
-}) => {
+}: ChallengeSelectorProps) {
+  const handleClick = () => {
+    console.log(selectedChallenges);
+    window.location.href = "/onboarding/trainingpath";
+  }
+
   return (
     <section className="flex flex-col justify-center mt-40 max-md:mt-10 max-md:max-w-full">
       <div className="flex flex-col justify-center w-full max-md:max-w-full">
@@ -37,8 +42,8 @@ const ChallengeSelector: React.FC<ChallengeSelectorProps> = ({
               onClick={() => onChallengeToggle(challenge.text)}
               className={`flex gap-2 justify-center items-center self-stretch px-5 py-3 my-auto border border-solid min-h-[48px] rounded-[32px] hover:bg-gray-100 cursor-pointer ${
                 selectedChallenges.includes(challenge.text)
-                  ? 'border-indigo-600 bg-indigo-600 bg-opacity-10'
-                  : 'border-gray-200'
+                  ? "border-indigo-600 bg-indigo-600 bg-opacity-10"
+                  : "border-gray-200"
               }`}
             >
               <span className="self-stretch my-auto">{challenge.emoji}</span>
@@ -47,11 +52,9 @@ const ChallengeSelector: React.FC<ChallengeSelectorProps> = ({
           ))}
         </div>
       </div>
-      <button className="gap-2 self-center px-5 py-4 mt-8 text-base font-semibold text-white whitespace-nowrap bg-indigo-600 rounded-lg min-h-[48px] hover:bg-indigo-700">
+      <button onClick={handleClick} className="gap-2 self-center px-5 py-4 mt-8 text-base font-semibold text-white whitespace-nowrap bg-indigo-600 rounded-lg min-h-[48px] hover:bg-indigo-700">
         Continue
       </button>
     </section>
   );
-};
-
-export default ChallengeSelector;
+}

@@ -1,13 +1,13 @@
+'use client';
+
 import React from "react";
-// import BackButton from './BackButton';
 import Header from "@/components/onboarding/Header";
 import TrainingOption from "@/components/onboarding/TrainingOption";
 import FooterImage from "@/components/onboarding/FooterImage";
-// import IconBubble from './IconBubble';
 
 interface TrainingPathProps {}
 
-const TrainingPath: React.FC<TrainingPathProps> = () => {
+export default function TrainingPath({}: TrainingPathProps) {
   const trainingOptions = [
     {
       title: "Structured Program",
@@ -31,6 +31,10 @@ const TrainingPath: React.FC<TrainingPathProps> = () => {
     },
   ];
 
+  const handleBackClick = () => {
+    window.location.href = "/onboarding/interviewchallenge";
+  }
+
   return (
     <main className="flex overflow-hidden flex-col bg-white">
       <div className="flex relative flex-col items-center justify-center py-14 w-full max-md:max-w-full">
@@ -38,6 +42,7 @@ const TrainingPath: React.FC<TrainingPathProps> = () => {
           <Header
             title="Choose your training path"
             subtitle="Pick the training method that works best for you."
+            onClick={handleBackClick}
           />
           <div className="flex flex-col mt-52 max-w-full w-[908px] max-md:mt-10">
             <h1 className="text-6xl font-bold text-center text-black max-md:max-w-full max-md:text-4xl">
@@ -55,5 +60,3 @@ const TrainingPath: React.FC<TrainingPathProps> = () => {
     </main>
   );
 };
-
-export default TrainingPath;

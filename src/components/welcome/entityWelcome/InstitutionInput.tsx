@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
 
 interface InstitutionInputProps {
   value: string;
@@ -14,7 +14,7 @@ const predefinedInstitutions = [
 export default function InstitutionInput({ value, onChange }: InstitutionInputProps) {
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     onChange(e.target.value);
   };
 
