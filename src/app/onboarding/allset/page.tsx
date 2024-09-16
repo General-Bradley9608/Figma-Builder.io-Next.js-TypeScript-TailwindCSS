@@ -1,6 +1,6 @@
 import React from "react";
 
-const PlayCVComponent: React.FC = () => {
+export default function PlayCVComponent() {
   return (
     <div className="flex overflow-hidden flex-col text-black bg-white">
       <div className="flex relative flex-col items-center px-20 pt-16 pb-64 w-full min-h-[1024px] max-md:px-5 max-md:pb-24 max-md:max-w-full">
@@ -35,5 +35,3 @@ const PlayCVComponent: React.FC = () => {
     </div>
   );
 };
-
-export default PlayCVComponent;

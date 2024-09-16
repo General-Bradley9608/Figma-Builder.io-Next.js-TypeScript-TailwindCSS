@@ -27,6 +27,10 @@ const UploadExperience: React.FC<UploadExperienceProps> = ({
     }
   };
 
+  const handleClick = () => {
+    window.location.href = "/onboarding/interviewchallenge";
+  };
+
   return (
     <div className="flex overflow-hidden flex-col bg-white">
       <main className="flex relative flex-col items-center justify-center py-14 w-full min-h-[1024px] max-md:max-w-full">
@@ -44,13 +48,13 @@ const UploadExperience: React.FC<UploadExperienceProps> = ({
           />
           <div className="flex gap-4 items-start mt-12 text-base font-semibold max-md:mt-10">
             <button
-              onClick={onContinue}
+              onClick={handleClick}
               className="gap-2 self-stretch px-5 py-4 text-white whitespace-nowrap bg-indigo-600 rounded-lg min-h-[48px]"
             >
               Continue
             </button>
             <button
-              onClick={onSkip}
+              onClick={handleClick}
               className="gap-2 self-stretch px-5 py-4 text-black rounded-lg bg-neutral-100 min-h-[48px]"
             >
               Skip for now

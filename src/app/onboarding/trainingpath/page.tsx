@@ -17,7 +17,7 @@ const TrainingPath: React.FC<TrainingPathProps> = () => {
         "https://cdn.builder.io/api/v1/image/assets/TEMP/2134b8003f4be0dba69f7e77d299942c97378b02852eb43a51ec72d1a3c50864?placeholderIfAbsent=true&apiKey=d9bf0d577dc74ba79e889f5b65cafa8b",
       imageAlt: "Structured Program illustration",
       defaultStyle: "bg-zinc-300 text-black",
-      hoverStyle: "hover:bg-blue-600",
+      hoverStyle: "hover:bg-blue-600 hover:text-white",
     },
     {
       title: "Freestyle Practice",
@@ -31,28 +31,14 @@ const TrainingPath: React.FC<TrainingPathProps> = () => {
     },
   ];
 
-  const iconBubbles = [
-    {
-      emoji: "🛠️",
-      className:
-        "self-end px-5 mt-24 bg-neutral-100 h-[72px] rounded-[100px] w-[72px] max-md:pr-5 max-md:mt-10",
-    },
-    {
-      emoji: "🧭",
-      className:
-        "px-10 mt-5 w-36 h-36 text-6xl border border-solid bg-zinc-50 border-neutral-200 rounded-[100px] max-md:px-5 max-md:text-4xl",
-    },
-    {
-      emoji: "🗓️",
-      className: "px-5 bg-neutral-100 h-[72px] rounded-[100px] w-[72px]",
-    },
-  ];
-
   return (
     <main className="flex overflow-hidden flex-col bg-white">
       <div className="flex relative flex-col items-center justify-center py-14 w-full max-md:max-w-full">
         <div className="flex relative flex-col items-center justify-center w-full max-w-[1110px] max-md:max-w-full">
-          <Header title="Choose your training path" subtitle="Pick the training method that works best for you." />
+          <Header
+            title="Choose your training path"
+            subtitle="Pick the training method that works best for you."
+          />
           <div className="flex flex-col mt-52 max-w-full w-[908px] max-md:mt-10">
             <h1 className="text-6xl font-bold text-center text-black max-md:max-w-full max-md:text-4xl">
               I want to go with a...

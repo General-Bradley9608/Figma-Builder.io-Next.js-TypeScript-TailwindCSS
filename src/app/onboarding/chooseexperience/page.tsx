@@ -12,18 +12,24 @@ export default function ChooseWork({}: ChooseWorkProps) {
         "https://cdn.builder.io/api/v1/image/assets/TEMP/45773c63e710fba12bed5072a303b4633aa3e9836dc4981f69487391d90e87c9?placeholderIfAbsent=true&apiKey=d9bf0d577dc74ba79e889f5b65cafa8b",
       title: "Student",
       description: "Currently still learning",
+      defaultStyle: "bg-zinc-50 text-black",
+      hoverStyle: "hover:bg-blue-600 hover:text-white",
     },
     {
       image:
         "https://cdn.builder.io/api/v1/image/assets/TEMP/7e0690b41a9c38ac4cee567451e3a1538c06324ff65905e2e6c1ceae260774e7?placeholderIfAbsent=true&apiKey=d9bf0d577dc74ba79e889f5b65cafa8b",
       title: "Working Professional",
       description: "Have a job but looking for opportunities",
+      defaultStyle: "bg-zinc-50 text-black",
+      hoverStyle: "hover:bg-blue-600 hover:text-white",
     },
     {
       image:
         "https://cdn.builder.io/api/v1/image/assets/TEMP/3ef9c1f5c62bb40fab02001e2fde25041500960720f8a619d6c81b00badec35b?placeholderIfAbsent=true&apiKey=d9bf0d577dc74ba79e889f5b65cafa8b",
       title: "Currently Not Working",
       description: "Have a job but looking for opportunities",
+      defaultStyle: "bg-zinc-50 text-black",
+      hoverStyle: "hover:bg-blue-600 hover:text-white",
     },
   ];
 

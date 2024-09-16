@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "@/components/header/Header";
-import IndividualWelcome from "@/components/welcome/IndividualWelcome";
+import IndividualWelcome from "@/components/welcome/individualWelcome/IndividualWelcome";
 import Footer from "@/components/footer/Footer";
 
 export default function Welcome() {

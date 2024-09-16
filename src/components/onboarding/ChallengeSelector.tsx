@@ -19,7 +19,7 @@ const ChallengeSelector: React.FC<ChallengeSelectorProps> = ({
   onSelectAll,
 }) => {
   return (
-    <section className="flex flex-col justify-center mt-60 max-md:mt-10 max-md:max-w-full">
+    <section className="flex flex-col justify-center mt-40 max-md:mt-10 max-md:max-w-full">
       <div className="flex flex-col justify-center w-full max-md:max-w-full">
         <h2 className="self-center text-4xl font-bold text-black max-md:max-w-full">
           My biggest challenges are...
