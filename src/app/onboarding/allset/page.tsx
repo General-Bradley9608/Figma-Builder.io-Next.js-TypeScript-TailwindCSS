@@ -1,0 +1,39 @@
+import React from "react";
+
+const PlayCVComponent: React.FC = () => {
+  return (
+    <div className="flex overflow-hidden flex-col text-black bg-white">
+      <div className="flex relative flex-col items-center px-20 pt-16 pb-64 w-full min-h-[1024px] max-md:px-5 max-md:pb-24 max-md:max-w-full">
+        <img
+          loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/917addc41ee8ffd8fce8fe2b1cbcfdea287c67ed8eb87c5a4509ba27ff607cdd?placeholderIfAbsent=true&apiKey=56fac90a92e74e049125400e70477bf1"
+          alt=""
+          className="object-cover absolute inset-0 size-full"
+        />
+        <div className="flex relative flex-col mb-0 max-w-full w-[715px] max-md:mb-2.5">
+          <div className="flex gap-3 items-center self-center text-2xl font-bold whitespace-nowrap">
+            <div className="flex shrink-0 self-stretch my-auto w-6 h-6 bg-indigo-50 rounded" />
+            <div className="self-stretch my-auto">PlayCV</div>
+          </div>      
+          <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets%2F56fac90a92e74e049125400e70477bf1%2F8c64114c13e04bea93f1bedda6e79f02" alt="" className="box-border object-cover overflow-hidden shrink-0 mt-5 w-full aspect-[1.48] max-w-[649px] min-h-[20px] min-w-[20px]" />
+          <div className="flex relative flex-col mt-8 w-full max-md:mt-10 max-md:max-w-full">
+            <h1 className="z-0 self-center text-4xl font-bold text-center">
+              You're all set !
+            </h1>
+            <p className="z-0 self-center mt-8 text-2xl leading-8 text-center max-md:max-w-full">
+              You're ready to shine! 🌟 Start practicing with our AI-powered
+              interview coach and take your skills to the next level.
+            </p>
+            <div className="flex z-0 gap-4 justify-center items-start self-center mt-8 max-w-full text-base font-semibold text-white w-[191px]">
+              <button className="gap-2 self-stretch px-5 py-4 bg-indigo-600 rounded-lg min-h-[48px] w-[191px]">
+                Let's start
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PlayCVComponent;
