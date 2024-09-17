@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useTheme } from 'next-themes';
 
 interface HeaderProps {
   title?: string;
@@ -10,40 +9,15 @@ interface HeaderProps {
 }
 
 export default function Header({title, subtitle, onClick}: HeaderProps) {
-  const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
-  
-  const onChangeTheme = () =>  {
-    if (theme === 'dark') {
-      setTheme('light')
-    } else {
-      setTheme('dark')
-    }
-  }
-
   return (
     <div className="flex relative flex-col items-center justify-center w-full max-w-[1110px] max-md:max-w-full">
-      <button onClick={onClick} className="flex items-start self-stretch my-auto text-sm font-semibold leading-none text-black whitespace-nowrap">
+      <button onClick={onClick} className="flex items-start self-stretch my-auto text-sm font-semibold leading-none text-black dark:text-white whitespace-nowrap">
         <div className="flex gap-2 justify-center items-center">
-          <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/133c3d1720b421e11da66963f056fed69a4d13512cb5126f6202db5146dad929?placeholderIfAbsent=true&apiKey=d9bf0d577dc74ba79e889f5b65cafa8b"
-            alt=""
-            className="object-contain shrink-0 self-stretch my-auto w-5 aspect-square"
-          />
-          <span className="self-stretch my-auto">Back</span>
+          <span className="self-stretch my-auto">{`< Back`}</span>
         </div>
       </button>
-      <header className="flex flex-col items-center justify-center my-auto text-black min-w-[240px] w-[257px]">
-        <div className="flex flex-col self-center my-auto text-black min-w-[240px] w-[375px]">
+      <header className="flex flex-col items-center justify-center my-auto text-black dark:text-white min-w-[240px] w-[257px]">
+        <div className="flex flex-col self-center my-auto text-black dark:text-white min-w-[240px] w-[375px]">
           <h2 className="gap-2 self-center text-xl font-semibold">
            {title}
           </h2>
@@ -52,11 +26,6 @@ export default function Header({title, subtitle, onClick}: HeaderProps) {
           </p>
         </div>
       </header>
-      <button onClick={onChangeTheme} className="flex items-end self-stretch my-auto text-sm font-semibold leading-none text-black whitespace-nowrap">
-        <div className="flex gap-2 justify-center items-center">
-          <span className="self-stretch my-auto">ThemeChange</span>
-        </div>
-      </button>
     </div>
   );
 }

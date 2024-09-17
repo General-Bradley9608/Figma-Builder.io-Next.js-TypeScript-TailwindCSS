@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import UploadArea from "@/components/onboarding/UploadArea";
 import Header from "@/components/onboarding/Header";
 import FooterImage from "@/components/onboarding/FooterImage";
+import { useTheme } from "next-themes";
 
 interface UploadExperienceProps {
   onContinue: () => void;
@@ -17,6 +18,7 @@ const UploadExperience: React.FC<UploadExperienceProps> = ({
   onBack,
 }) => {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const { theme } = useTheme();
 
   const handleFileUpload = (file: File) => {
     if (file.size <= 25 * 1024 * 1024) {
@@ -36,7 +38,7 @@ const UploadExperience: React.FC<UploadExperienceProps> = ({
   }
 
   return (
-    <main className="flex overflow-hidden flex-col bg-white">
+    <main className="flex overflow-hidden flex-col bg-white dark:bg-gradient-to-b dark:from-[#5d5fef] dark:via-[#6E6FF1] dark:to-[#BCBDF7] min-h-screen">
       <div className="flex relative flex-col items-center justify-center py-14 w-full min-h-[1024px] max-md:max-w-full">
         <Header
           title="Share your experience"
@@ -44,7 +46,7 @@ const UploadExperience: React.FC<UploadExperienceProps> = ({
           onClick={handleBackClick}
         />
         <section className="flex flex-col items-center justify-center mt-28 max-w-full w-[908px] max-md:mt-10">
-          <h2 className="self-stretch text-4xl font-bold text-center text-black max-md:max-w-full">
+          <h2 className="self-stretch text-4xl font-bold text-center text-black dark:text-white max-md:max-w-full">
             Upload your CV
           </h2>
           <UploadArea
@@ -54,19 +56,23 @@ const UploadExperience: React.FC<UploadExperienceProps> = ({
           <div className="flex gap-4 items-start mt-12 text-base font-semibold max-md:mt-10">
             <button
               onClick={handleClick}
-              className="gap-2 self-stretch px-5 py-4 text-white whitespace-nowrap bg-indigo-600 rounded-lg min-h-[48px]"
+              className="gap-2 self-stretch px-5 py-4 text-white dark:text-blue-500 whitespace-nowrap bg-indigo-600 dark:bg-white rounded-lg min-h-[48px]"
             >
               Continue
             </button>
             <button
               onClick={handleClick}
-              className="gap-2 self-stretch px-5 py-4 text-black rounded-lg bg-neutral-100 min-h-[48px]"
+              className="gap-2 self-stretch px-5 py-4 text-black dark:text-white rounded-lg bg-neutral-100 dark:bg-[#9FA0F5] min-h-[48px]"
             >
               Skip for now
             </button>
           </div>
         </section>
-        <FooterImage path="/04.png" alt="" />
+        {theme === "dark" ? (
+          <FooterImage path="/04-1.png" alt="" />
+        ) : (
+          <FooterImage path="/04.png" alt="" />
+        )}
       </div>
     </main>
   );

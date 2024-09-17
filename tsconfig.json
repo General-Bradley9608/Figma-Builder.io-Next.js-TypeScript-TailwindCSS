@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/odersummary"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/odersummary", "src/lib/auth.js", "src/app/api/auth/[...nextauth].ys", "src/app/api/auth/callback/google.js"],
   "exclude": ["node_modules"]
 }

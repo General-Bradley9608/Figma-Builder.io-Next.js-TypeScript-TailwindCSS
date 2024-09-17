@@ -4,34 +4,34 @@ import React from "react";
 import Header from "@/components/onboarding/Header";
 import PersonaCard from "@/components/onboarding/PersonaCard";
 import FooterImage from "@/components/onboarding/FooterImage";
+import { useTheme } from "next-themes";
 
 interface ChooseWorkProps {}
 
 export default function ChooseWork({}: ChooseWorkProps) {
+  const { theme } = useTheme();
+
   const personas = [
     {
-      image:
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/45773c63e710fba12bed5072a303b4633aa3e9836dc4981f69487391d90e87c9?placeholderIfAbsent=true&apiKey=d9bf0d577dc74ba79e889f5b65cafa8b",
+      image: theme === 'dark' ? "/09-1.png" : "/09.png",
       title: "Student",
       description: "Currently still learning",
-      defaultStyle: "bg-zinc-50 text-black",
-      hoverStyle: "hover:bg-blue-600 hover:text-white",
+      defaultStyle: "bg-zinc-50 text-black dark:text-white dark:bg-[#8889F3]",
+      hoverStyle: "hover:bg-[#465FF1] hover:text-white dark:hover:bg-[#465FF1] dark:hover:text-white",
     },
     {
-      image:
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/7e0690b41a9c38ac4cee567451e3a1538c06324ff65905e2e6c1ceae260774e7?placeholderIfAbsent=true&apiKey=d9bf0d577dc74ba79e889f5b65cafa8b",
+      image: theme === 'dark' ? "/10-1.png" : "/10.png",
       title: "Working Professional",
       description: "Have a job but looking for opportunities",
-      defaultStyle: "bg-zinc-50 text-black",
-      hoverStyle: "hover:bg-blue-600 hover:text-white",
+      defaultStyle: "bg-zinc-50 text-black dark:text-white dark:bg-[#8889F3]",
+      hoverStyle: "hover:bg-[#465FF1] hover:text-white dark:hover:bg-[#465FF1] dark:hover:text-white",
     },
-    {
-      image:
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/3ef9c1f5c62bb40fab02001e2fde25041500960720f8a619d6c81b00badec35b?placeholderIfAbsent=true&apiKey=d9bf0d577dc74ba79e889f5b65cafa8b",
+    {      
+      image: theme === 'dark' ? "/11-1.png" : "/11.png",
       title: "Currently Not Working",
       description: "Have a job but looking for opportunities",
-      defaultStyle: "bg-zinc-50 text-black",
-      hoverStyle: "hover:bg-blue-600 hover:text-white",
+      defaultStyle: "bg-zinc-50 text-black dark:text-white dark:bg-[#8889F3]",
+      hoverStyle: "hover:bg-[#465FF1] hover:text-white dark:hover:bg-[#465FF1] dark:hover:text-white",
     },
   ];
   
@@ -40,7 +40,7 @@ export default function ChooseWork({}: ChooseWorkProps) {
   }
 
   return (
-    <main className="flex overflow-hidden flex-col bg-white">
+    <main className="flex overflow-hidden flex-col bg-white dark:bg-gradient-to-b dark:from-[#5d5fef] dark:via-[#6E6FF1] dark:to-[#BCBDF7] min-h-screen">
       <div className="flex relative flex-col items-center justify-center py-14 w-full min-h-[1024px] max-md:max-w-full">
         <div className="flex relative flex-col items-center justify-center w-full max-w-[1110px] max-md:max-w-full">
           <Header
@@ -49,7 +49,7 @@ export default function ChooseWork({}: ChooseWorkProps) {
             onClick={handleBackClick}
           />
           <section className="flex flex-col items-center justify-center mt-28 max-w-full w-[908px] max-md:mt-10">
-            <h1 className="text-7xl font-bold text-center text-black max-md:max-w-full max-md:text-4xl">
+            <h1 className="text-7xl font-bold text-center text-black dark:text-white max-md:max-w-full max-md:text-4xl">
               I am a...
             </h1>
             <div className="flex flex-wrap gap-6 mt-12 w-full max-md:mt-10 max-md:max-w-full">
@@ -59,7 +59,11 @@ export default function ChooseWork({}: ChooseWorkProps) {
             </div>
           </section>
         </div>
-        <FooterImage path="/02.png" alt="" />
+        {theme === "dark" ? (
+          <FooterImage path="/02-1.png" alt="" />
+        ) : (
+          <FooterImage path="/02.png" alt="" />
+        )}
       </div>
     </main>
   );

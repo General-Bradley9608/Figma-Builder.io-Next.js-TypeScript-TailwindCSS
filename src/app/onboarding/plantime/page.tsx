@@ -6,6 +6,7 @@ import TrainingTimePicker from "@/components/onboarding/TrainingTimePicker";
 import InterviewTimePicker from "@/components/onboarding/InterviewTimePicker";
 import FooterImage from "@/components/onboarding/FooterImage";
 import DecorateButton from "@/components/onboarding/DecorateButton";
+import { useTheme } from "next-themes";
 
 interface TimeDetails {
   dedicatedTime: boolean;
@@ -13,6 +14,8 @@ interface TimeDetails {
 }
 
 export default function PracticeTimePlanner() {
+  const { theme } = useTheme();
+
   const [timeDetails, setTimeDetails] = useState<TimeDetails>({
     dedicatedTime: true,
     interviewTime: false,
@@ -49,7 +52,7 @@ export default function PracticeTimePlanner() {
   }
 
   return (
-    <main className="flex overflow-hidden flex-col bg-white">
+    <main className="flex overflow-hidden flex-col bg-white dark:bg-gradient-to-b dark:from-[#5d5fef] dark:via-[#6E6FF1] dark:to-[#BCBDF7] min-[]:h-screen">
       <div className="flex relative flex-col items-center justify-center py-14 w-full max-md:max-w-full">
         <div className="flex relative flex-col items-center justify-center w-full max-w-[1110px] max-md:max-w-full">
           <Header
@@ -76,7 +79,7 @@ export default function PracticeTimePlanner() {
               if (timeDetails.dedicatedTime === true) {
                 return (
                   <div className="flex flex-col items-center justify-center max-w-full font-bold w-[726px]">
-                    <h2 className="self-stretch text-4xl text-center text-black max-md:max-w-full">
+                    <h2 className="self-stretch text-4xl text-center text-black dark:text-white max-md:max-w-full">
                       I can dedicate...
                     </h2>
                     <TrainingTimePicker />
@@ -85,7 +88,7 @@ export default function PracticeTimePlanner() {
               } else if (timeDetails.interviewTime === true) {
                 return (
                   <div className="flex flex-col items-center justify-center max-w-full font-bold w-[726px]">
-                    <h2 className="self-stretch text-4xl text-center text-black max-md:max-w-full">
+                    <h2 className="self-stretch text-4xl text-center text-black dark:text-white max-md:max-w-full">
                       I have a job interview coming up on...
                     </h2>
                     <InterviewTimePicker />
@@ -96,13 +99,17 @@ export default function PracticeTimePlanner() {
             <button
               type="submit"
               onClick={handleClick}
-              className="self-center px-5 py-4 mt-8 text-base font-semibold text-white whitespace-nowrap bg-indigo-600 rounded-lg min-h-[48px]"
+              className="self-center px-5 py-4 mt-8 text-base font-semibold text-white dark:text-blue-500 whitespace-nowrap bg-indigo-600 dark:bg-white rounded-lg min-h-[48px]"
             >
               Continue
             </button>
           </form>
         </div>
-        <FooterImage path="/07.png" alt="" />
+        {theme === "dark" ? (
+          <FooterImage path="/07-1.png" alt="" />
+        ) : (
+          <FooterImage path="/07.png" alt="" />
+        )}
       </div>
     </main>
   );

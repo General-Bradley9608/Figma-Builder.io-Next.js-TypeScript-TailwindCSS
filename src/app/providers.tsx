@@ -3,20 +3,18 @@
 import React, { useState, useEffect } from "react";
 import { ThemeProvider } from "next-themes";
 
-export default function Providers({ children }: { children: React.ReactNode }) {
+const Providers: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  if (!mounted) {
-    return null;
-  }
-
+  
   return (
-    <ThemeProvider attribute="class">
+    mounted ? <ThemeProvider attribute="class" >
       {children}
-    </ThemeProvider>
+    </ThemeProvider> : <></>
   );
 }
+
+export default Providers;

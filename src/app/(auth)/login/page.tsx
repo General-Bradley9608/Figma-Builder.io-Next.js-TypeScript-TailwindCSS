@@ -1,13 +1,13 @@
 import React from 'react';
-import Header from '../../../components/header/Header';
-import LoginForm from '../../../components/login/LoginForm';
-import SocialLogin from '../../../components/login/SocialLogin';
-import Footer from '../../../components/footer/Footer';
+import Header from '@/components/header/Header';
+import LoginForm from '@/components/login/LoginForm';
+import SocialLogin from '@/components/login/SocialLogin';
+import Footer from '@/components/footer/Footer';
 
-const LoginPage: React.FC = () => {
+const LoginPage: React.FC = () => { 
   return (
     <main className="flex overflow-hidden flex-col items-center bg-white">
-      <div className="flex w-full bg-white min-h-[960px] max-md:max-w-full">
+      <div className="flex w-full min-h-[960px] max-md:max-w-full">
         <div className="flex flex-col flex-1 shrink justify-between w-full basis-0 min-w-[240px] max-md:max-w-full">
           <Header />
           <section className="flex flex-col items-center px-8 mt-16 w-full max-md:px-5 max-md:mt-10 max-md:max-w-full">
@@ -24,3 +24,22 @@ const LoginPage: React.FC = () => {
 };
 
 export default LoginPage;
+
+// 'use client';
+// import { signIn } from 'next-auth/react';
+
+// const LoginPage = () => {
+//   const handleGithubLogin = async () => {
+//     signIn("github");
+//   };
+
+//   return (
+//     <div>
+//       <form action={handleGithubLogin}>
+//         <button>LogIn</button>
+//       </form>
+//     </div>
+//   );
+// };
+
+// export default LoginPage;

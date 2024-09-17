@@ -18,7 +18,7 @@ const UploadArea: React.FC<UploadAreaProps> = ({ onFileUpload, uploadedFile }) =
   return (
     <div
       {...getRootProps()}
-      className="flex flex-col justify-center cursor-pointer px-6 py-24 mt-12 max-w-full text-black rounded-lg bg-gray-300 bg-opacity-20 min-h-[290px] w-[594px] max-md:px-5 max-md:mt-10"
+      className="flex flex-col justify-center cursor-pointer px-6 py-24 mt-12 max-w-full text-black dark:text-white rounded-lg bg-gray-300 bg-opacity-20 min-h-[290px] w-[594px] max-md:px-5 max-md:mt-10"
     >
       <input {...getInputProps()} />
       <div className="flex flex-col w-full max-md:max-w-full">

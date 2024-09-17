@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Header from "@/components/onboarding/Header";
 import ChallengeSelector from "@/components/onboarding/ChallengeSelector";
 import FooterImage from "@/components/onboarding/FooterImage";
+import { useTheme } from "next-themes";
 
 interface Challenge {
   emoji: string;
@@ -12,6 +13,7 @@ interface Challenge {
 
 export default function InterviewChallenges() {
   const [selectedChallenges, setSelectedChallenges] = useState<string[]>([]);
+  const { theme } = useTheme();
 
   const challenges: Challenge[] = [
     { emoji: "😰", text: "Nervousness" },
@@ -44,7 +46,7 @@ export default function InterviewChallenges() {
   }
 
   return (
-    <main className="flex overflow-hidden flex-col bg-white">
+    <main className="flex overflow-hidden flex-col bg-white dark:bg-gradient-to-b dark:from-[#5d5fef] dark:via-[#6E6FF1] dark:to-[#BCBDF7] min-h-screen">
       <div className="flex relative flex-col items-center justify-center py-14 w-full min-h-[1024px] max-md:max-w-full">
         <div className="flex relative flex-col items-center justify-center w-full max-w-[1110px] max-md:max-w-full">
           <Header
@@ -59,7 +61,11 @@ export default function InterviewChallenges() {
             onSelectAll={handleSelectAll}
           />
         </div>
-        <FooterImage path="/05.png" alt="Footer Image" />
+        {theme === "dark" ? (
+          <FooterImage path="/05-1.png" alt="" />
+        ) : (
+          <FooterImage path="/05.png" alt="" />
+        )}
       </div>
     </main>
   );

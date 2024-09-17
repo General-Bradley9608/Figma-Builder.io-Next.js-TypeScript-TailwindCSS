@@ -24,7 +24,7 @@ export default function GoalDropdown({ value, onChange }: GoalDropdownProps) {
   return (
     <div className="flex flex-col justify-center mt-8 w-[750px] text-6xl text-center text-gray-300 max-md:max-w-full max-md:text-4xl">
       <div className="flex flex-row text-4xl items-center justify-center">
-        <h2 className="text-center text-black max-md:max-w-full">
+        <h2 className="text-center text-black dark:text-white max-md:max-w-full">
           My career goal is to...
         </h2>
       </div>
@@ -38,7 +38,7 @@ export default function GoalDropdown({ value, onChange }: GoalDropdownProps) {
             onFocus={() => setShowSuggestions(true)}
             onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
             placeholder="Select or write a goal"
-            className="flex overflow-hidden gap-2 items-center px-3.5 py-2.5 w-full text-gray-500 bg-white rounded-lg border border-gray-300 border-solid shadow-sm"
+            className="flex overflow-hidden gap-2 items-center px-3.5 py-2.5 w-full text-gray-500 dark:text-black bg-white dark:bg-white/0 rounded-lg"
           />
           <img
             loading="lazy"
@@ -47,7 +47,7 @@ export default function GoalDropdown({ value, onChange }: GoalDropdownProps) {
             className="object-contain absolute right-0 transform -translate-y-16 w-14 aspect-square pointer-events-none"
           />
           {showSuggestions && (
-            <ul className="w-full bg-white border text-gray-600 border-gray-300 rounded-lg mt-1 shadow-lg">
+            <ul className="w-full bg-white dark:bg-white/0 border text-gray-600 border-gray-300 rounded-lg mt-1 shadow-lg">
               {goals.map((goal, index) => (
                 <li
                   key={index}

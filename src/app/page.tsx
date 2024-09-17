@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useTheme } from 'next-themes';
+import { useTheme } from "next-themes";
 import FooterImage from "@/components/onboarding/FooterImage";
 
 export default function WelcomePage() {
@@ -29,18 +29,18 @@ export default function WelcomePage() {
   };
 
   return (
-    <main className="flex overflow-hidden flex-col bg-white dark:bg-purple-600">
+    <main className="flex overflow-hidden flex-col bg-white dark:bg-gradient-to-b dark:from-[#5d5fef] dark:via-[#6E6FF1] dark:to-[#BCBDF7] min-h-screen">
       <div className="flex relative flex-col items-center justify-center py-14 w-full min-h-[1024px] max-md:max-w-full">
         <div className="flex relative flex-col justify-center items-center self-center max-w-full w-[890px]">
-          <header className="flex flex-col justify-center items-center w-full text-center text-black">
-        <button
-          onClick={onChangeTheme}
-          className="flex items-end self-stretch my-auto text-sm font-semibold leading-none text-black whitespace-nowrap"
-        >
-          <div className="flex gap-2 justify-center items-center">
-            <span className="self-stretch my-auto">ThemeChange</span>
-          </div>
-        </button>
+          <header className="flex flex-col justify-center items-center w-full text-center text-black dark:text-white">
+            <button
+              onClick={onChangeTheme}
+              className="flex items-end self-stretch my-auto text-sm font-semibold leading-none text-black dark:text-white whitespace-nowrap"
+            >
+              <div className="flex gap-2 justify-center items-center">
+                <span className="self-stretch my-auto">ThemeChange</span>
+              </div>
+            </button>
             <h1 className="text-9xl font-bold leading-[142px] max-md:max-w-full max-md:text-4xl max-md:leading-10">
               Welcome to PLAY.CV
             </h1>
@@ -51,12 +51,16 @@ export default function WelcomePage() {
           </header>
           <button
             onClick={handleClick}
-            className="gap-2 px-5 py-4 mt-8 max-w-full text-base font-semibold text-white bg-indigo-600 rounded-lg min-h-[48px] w-[250px]"
+            className="gap-2 px-5 py-4 mt-8 max-w-full text-base font-semibold text-white bg-indigo-600 dark:text-indigo-600 dark:bg-white rounded-lg min-h-[48px] w-[250px]"
           >
             Get Started
           </button>
         </div>
-        <FooterImage path="/01.png" alt="" />
+        {theme === "dark" ? (
+          <FooterImage path="/01-1.png" alt="" />
+        ) : (
+          <FooterImage path="/01.png" alt="" />
+        )}
       </div>
     </main>
   );
