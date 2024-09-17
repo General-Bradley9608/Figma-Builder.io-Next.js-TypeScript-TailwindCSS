@@ -9,38 +9,13 @@ export default function WelcomePage() {
     window.location.href = "/onboarding/chooseexperience";
   };
 
-  const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
-
-  const onChangeTheme = () => {
-    if (theme === "dark") {
-      setTheme("light");
-    } else {
-      setTheme("dark");
-    }
-  };
+  const { theme } = useTheme();
 
   return (
     <main className="flex overflow-hidden flex-col bg-white dark:bg-gradient-to-b dark:from-[#5d5fef] dark:via-[#6E6FF1] dark:to-[#BCBDF7] min-h-screen">
       <div className="flex relative flex-col items-center justify-center py-14 w-full min-h-[1024px] max-md:max-w-full">
         <div className="flex relative flex-col justify-center items-center self-center max-w-full w-[890px]">
           <header className="flex flex-col justify-center items-center w-full text-center text-black dark:text-white">
-            <button
-              onClick={onChangeTheme}
-              className="flex items-end self-stretch my-auto text-sm font-semibold leading-none text-black dark:text-white whitespace-nowrap"
-            >
-              <div className="flex gap-2 justify-center items-center">
-                <span className="self-stretch my-auto">ThemeChange</span>
-              </div>
-            </button>
             <h1 className="text-9xl font-bold leading-[142px] max-md:max-w-full max-md:text-4xl max-md:leading-10">
               Welcome to PLAY.CV
             </h1>

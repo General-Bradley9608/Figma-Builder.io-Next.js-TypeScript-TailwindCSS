@@ -85,11 +85,11 @@ export default function CareerPathForm() {
         />
         {(() => {
           if (careerDetails.industry === true) {
-            return <DecorateButton icon="👀" name="Ooolala" angle="-0.17948938805876508rad" position="end" />;
+            return <DecorateButton icon="👀" name="Ooolala" direction="right" position="end" />;
           } else if (careerDetails.role === true) {
-            return <DecorateButton icon="🔥" name="Whoa, You're on Fire!" angle="-0.17948938805876508rad" position="start" />;
+            return <DecorateButton icon="🔥" name="Whoa, You're on Fire!" direction="right" position="start" />;
           } else if (careerDetails.goal === true) {
-            return <DecorateButton icon="🚀" name="Boom! You got this!" angle="0.17948938805876508rad" position="end" />;
+            return <DecorateButton icon="🚀" name="Boom! You got this!" direction="left" position="end" />;
           }
         })()}
         <form

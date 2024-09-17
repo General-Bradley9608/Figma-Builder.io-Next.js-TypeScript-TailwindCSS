@@ -63,11 +63,11 @@ export default function PracticeTimePlanner() {
           {(() => {
             if (timeDetails.dedicatedTime === true) {
               return (
-                <DecorateButton icon="💫" name="Just Magic!" angle="-0.17948938805876508rad" position="end" />
+                <DecorateButton icon="💫" name="Just Magic!" direction="right"  position="end" />
               );
             } else if (timeDetails.interviewTime === true) {
               return (
-                <DecorateButton icon="💪" name="Power Move!" angle="-0.17948938805876508rad" position="end" />
+                <DecorateButton icon="💪" name="Power Move!" direction="right"  position="end" />
               );
             }
           })()}
