@@ -12,7 +12,7 @@ export default function PlayCVComponent() {
         <div className="flex relative flex-col mb-0 max-w-full w-[715px] max-md:mb-2.5">
           <div className="flex gap-3 items-center self-center text-2xl font-bold whitespace-nowrap">
             <div className="flex shrink-0 self-stretch my-auto w-6 h-6 bg-indigo-50 rounded" />
-            <div className="self-stretch my-auto">PlayCV</div>
+            <div className="self-stretch my-auto dark:text-white">PlayCV</div>
           </div>      
           <img loading="lazy" src={theme === 'dark' ? "/13-1.png" : "/13.png"} alt="" className="box-border object-cover overflow-hidden shrink-0 mt-5 w-full aspect-[1.48] max-w-[649px] min-h-[20px] min-w-[20px]" />
           <div className="flex relative flex-col mt-8 w-full max-md:mt-10 max-md:max-w-full">
