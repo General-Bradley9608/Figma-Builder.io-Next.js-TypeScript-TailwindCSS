@@ -37,7 +37,7 @@ export default function IndustryDropdown({
           I'm interested in...
         </h2>
       </div>
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center mt-14">
         <div className="relative">
           <input
             type="text"

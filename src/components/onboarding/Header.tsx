@@ -1,6 +1,7 @@
 'use client';
 
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
 
 interface HeaderProps {
   title?: string;
@@ -9,6 +10,25 @@ interface HeaderProps {
 }
 
 export default function Header({title, subtitle, onClick}: HeaderProps) {
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+  
+  const onChangeTheme = () =>  {
+    if (theme === 'dark') {
+      setTheme('light')
+    } else {
+      setTheme('dark')
+    }
+  }
+
   return (
     <div className="flex relative flex-col items-center justify-center w-full max-w-[1110px] max-md:max-w-full">
       <button onClick={onClick} className="flex items-start self-stretch my-auto text-sm font-semibold leading-none text-black whitespace-nowrap">
@@ -32,6 +52,11 @@ export default function Header({title, subtitle, onClick}: HeaderProps) {
           </p>
         </div>
       </header>
+      <button onClick={onChangeTheme} className="flex items-end self-stretch my-auto text-sm font-semibold leading-none text-black whitespace-nowrap">
+        <div className="flex gap-2 justify-center items-center">
+          <span className="self-stretch my-auto">ThemeChange</span>
+        </div>
+      </button>
     </div>
   );
 }

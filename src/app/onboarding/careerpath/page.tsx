@@ -6,6 +6,7 @@ import IndustryDropdown from "@/components/onboarding/IndustryDropdown";
 import RoleDropdown from "@/components/onboarding/RoleDropdown";
 import FooterImage from "@/components/onboarding/FooterImage";
 import GoalDropdown from "@/components/onboarding/GoalDropdown";
+import DecorateButton from "@/components/onboarding/DecorateButton";
 
 interface CareerPathFormProps {
   onSubmit: (industry: string) => void;
@@ -17,18 +18,6 @@ interface CareerDetails {
   goal: boolean;
 }
 
-const DecorateButton = ({ icon, name }: { icon: string; name: string }) => {
-  return (
-    <div className="flex relative flex-col items-end w-full max-w-[1019px] max-md:max-w-full">
-      <button className="flex z-10 gap-2 justify-end items-end px-5 py-4 mt-40 mr-32 text-base font-medium bg-white bg-opacity-10 min-h-12 rotate-[-0.17948938805876508rad] border border-blue-700 rounded-[32px] max-md:mt-10 max-md:mr-2.5">
-        <span className="self-stretch my-auto text-white">{icon}</span>
-        <span className="self-stretch my-auto leading-6 text-black">
-          {name}
-        </span>
-      </button>
-    </div>
-  );
-};
 
 export default function CareerPathForm({ onSubmit }: CareerPathFormProps) {
   const [selectedIndustry, setSelectedIndustry] = useState("");
@@ -100,11 +89,11 @@ export default function CareerPathForm({ onSubmit }: CareerPathFormProps) {
         />
         {(() => {
           if (careerDetails.industry === true) {
-            return <DecorateButton icon="👀" name="Ooolala" />;
+            return <DecorateButton icon="👀" name="Ooolala" angle="-0.17948938805876508rad" position="end" />;
           } else if (careerDetails.role === true) {
-            return <DecorateButton icon="👀" name="Ooolala" />;
+            return <DecorateButton icon="🔥" name="Whoa, You're on Fire!" angle="-0.17948938805876508rad" position="start" />;
           } else if (careerDetails.goal === true) {
-            return <DecorateButton icon="👀" name="Ooolala" />;
+            return <DecorateButton icon="🚀" name="Boom! You got this!" angle="0.17948938805876508rad" position="end" />;
           }
         })()}
         <form

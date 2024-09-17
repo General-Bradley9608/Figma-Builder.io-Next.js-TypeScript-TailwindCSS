@@ -36,14 +36,14 @@ const UploadExperience: React.FC<UploadExperienceProps> = ({
   }
 
   return (
-    <div className="flex overflow-hidden flex-col bg-white">
-      <main className="flex relative flex-col items-center justify-center py-14 w-full min-h-[1024px] max-md:max-w-full">
+    <main className="flex overflow-hidden flex-col bg-white">
+      <div className="flex relative flex-col items-center justify-center py-14 w-full min-h-[1024px] max-md:max-w-full">
         <Header
           title="Share your experience"
           subtitle="Tell us about your background to tailor your practice sessions"
           onClick={handleBackClick}
         />
-        <section className="flex flex-col items-center justify-center mt-44 max-w-full w-[908px] max-md:mt-10">
+        <section className="flex flex-col items-center justify-center mt-28 max-w-full w-[908px] max-md:mt-10">
           <h2 className="self-stretch text-4xl font-bold text-center text-black max-md:max-w-full">
             Upload your CV
           </h2>
@@ -67,8 +67,8 @@ const UploadExperience: React.FC<UploadExperienceProps> = ({
           </div>
         </section>
         <FooterImage path="/04.png" alt="" />
-      </main>
-    </div>
+      </div>
+    </main>
   );
 };
 
