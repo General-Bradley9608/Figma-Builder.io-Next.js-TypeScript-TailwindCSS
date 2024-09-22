@@ -59,10 +59,9 @@ interface SignUpPageProps {}
 const SignUpPage: React.FC<SignUpPageProps> = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = [
-    // '/aaa.jpg',
     'https://cdn.builder.io/api/v1/image/assets/TEMP/176dd0fc1a13f39016d53e31ebd79fa0e434a184f9bb2e85ee7d6aa60c71166b?placeholderIfAbsent=true&apiKey=56fac90a92e74e049125400e70477bf1',
-    '/bbb.jpg',
-    '/ccc.jpg',
+    '/image1.jpg',
+    '/image2.jpg',
   ];
 
   useEffect(() => {
