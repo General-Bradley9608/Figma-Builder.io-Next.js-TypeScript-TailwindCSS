@@ -1,9 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+  font-family: "Apple Color Emoji";
+  font-style: normal;
+  font-weight: normal;
+  src: url("/assets/fonts/AppleColorEmoji.ttf") format("truetype");
+}
 
 html,
 
 body {
   overflow-y: auto;
+}
+
+@layer base {
+  .dark {
+    --primary: #465FF1;
+    --primary-foreground: #FFFFFF;
+    --secondary: #FAFBFE;
+    --secondary-foreground: #475467;
+    --destructive: #F43F5E;
+    --destructive-foreground: #FFFFFF;
+    --accent: #F4F4F5;
+    --accent-foreground: #18181B;
+    --link: #344054;
+    --muted: #C0C8D4;
+  }
+}
+
+[role="emoji"] {
+  font-family: 'Apple Color Emoji', sans-serif;
 }

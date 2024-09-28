@@ -4,7 +4,7 @@ const VideoSection: React.FC = () => {
   return (
     <section className="flex flex-col items-center self-center max-w-full w-[968px]">
       <div className="flex flex-col items-center max-w-full text-center w-[716px]">
-        <h2 className="text-3xl font-semibold leading-none text-zinc-900">
+        <h2 className="text-3xl font-semibold leading-none text-accent-foreground">
           Hey there! 👋
         </h2>
         <p className="mt-2 text-base leading-5 text-slate-700 max-md:max-w-full">

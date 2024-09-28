@@ -10,7 +10,7 @@ interface InputFieldProps {
 const InputField: React.FC<InputFieldProps> = ({ label, placeholder, icon, isDropdown = false }) => {
   return (
     <div className="flex flex-col w-full mb-4">
-      <label htmlFor={label.toLowerCase().replace(/\s/g, '-')} className="text-sm font-medium leading-none text-zinc-900 mb-1.5">
+      <label htmlFor={label.toLowerCase().replace(/\s/g, '-')} className="text-sm font-medium leading-none text-accent-foreground mb-1.5">
         {label}
       </label>
       <div className="flex overflow-hidden gap-2 items-center px-3.5 py-2.5 w-full text-base text-gray-500 bg-white rounded-lg border border-gray-300 border-solid shadow-sm">

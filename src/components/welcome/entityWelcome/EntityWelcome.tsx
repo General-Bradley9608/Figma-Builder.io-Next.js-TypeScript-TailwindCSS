@@ -23,10 +23,10 @@ export default function InstitutionForm({userName, userEmail}: {userName: string
         <section className="flex flex-col items-center w-full max-md:mt-10 max-md:max-w-full">
           <div className="flex flex-col p-4 max-w-full bg-neutral-100 rounded-[32px] w-[448px]">
             <div className="flex flex-col w-full text-center">
-              <h1 className="flex flex-col w-full text-3xl font-semibold leading-10 text-zinc-900">
+              <h1 className="flex flex-col w-full text-3xl font-semibold leading-10 text-accent-foreground">
                 Welcome aboard, {userName}! 🎉
               </h1>
-              <div className="flex gap-2 items-center self-center mt-4 text-base font-medium leading-none whitespace-nowrap text-zinc-900">
+              <div className="flex gap-2 items-center self-center mt-4 text-base font-medium leading-none whitespace-nowrap text-accent-foreground">
                 <img
                   loading="lazy"
                   src="https://cdn.builder.io/api/v1/image/assets/TEMP/4d9c3fabc6f34b4673244f30a59d62b0385c701e9c8ee4c41ad6a4ee6546e110?placeholderIfAbsent=true&apiKey=d9bf0d577dc74ba79e889f5b65cafa8b"
@@ -55,7 +55,7 @@ export default function InstitutionForm({userName, userEmail}: {userName: string
                 </button>
                 <button
                   type="button"
-                  className="overflow-hidden flex-1 shrink gap-2 self-stretch px-5 py-2.5 mt-2 w-full rounded-lg min-w-[240px] text-zinc-900"
+                  className="overflow-hidden flex-1 shrink gap-2 self-stretch px-5 py-2.5 mt-2 w-full rounded-lg min-w-[240px] text-accent-foreground"
                 >
                   Go back
                 </button>

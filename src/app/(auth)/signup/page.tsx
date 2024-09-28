@@ -49,9 +49,9 @@
 
 import React, { useState, useEffect } from 'react';
 import Footer from "@/components/footer/Footer";
-import Testimonial from '@/components/signup/Testimonial';
-import SignUpForm from "@/components/signup/SignUpForm";
-import SocialSignUp from '@/components/signup/SocialSignUp';
+import Testimonial from './_components/Testimonial';
+import SignUpForm from "./_components/SignUpForm";
+import SocialSignUp from './_components/SocialSignUp';
 import Header from "@/components/header/Header";
 
 interface SignUpPageProps {}

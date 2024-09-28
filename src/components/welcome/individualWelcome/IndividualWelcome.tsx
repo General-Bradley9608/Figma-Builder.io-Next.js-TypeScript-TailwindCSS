@@ -14,11 +14,11 @@ export default function IndividualWelcome({userName, userEmail, entity}: Individ
   return (
     <main className="flex flex-col items-center w-full max-md:max-w-full">
       <section className="flex flex-col max-w-full w-[535px]">
-        <h1 className="text-3xl font-semibold leading-none text-center text-zinc-900 max-md:max-w-full">
+        <h1 className="text-3xl font-semibold leading-none text-center text-accent-foreground max-md:max-w-full">
           Welcome aboard, {userName}! 🎉
         </h1>
         <div className="flex flex-col justify-center self-center p-4 mt-6 w-full bg-neutral-100 rounded-[32px]">
-          <div className="flex flex-col items-center self-center w-full text-2xl font-semibold leading-10 text-center text-zinc-900">
+          <div className="flex flex-col items-center self-center w-full text-2xl font-semibold leading-10 text-center text-accent-foreground">
             <img
               loading="lazy"
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/0a0fa9afd04295aeff30eb10b5c1d48450200cc32335dada50f6a4ec1753f3ed?placeholderIfAbsent=true&apiKey=03171c0a35c24f47becb1e98f7ef506f"
@@ -26,7 +26,7 @@ export default function IndividualWelcome({userName, userEmail, entity}: Individ
               className="object-contain max-w-full aspect-[0.92] w-[110px]"
             />
             <div className="mt-4 bg-clip-text bg-[linear-gradient(45deg,#465FF1_14.64%,#ADB6E9_85.36%)] max-md:max-w-full">
-              <span className="text-zinc-900">
+              <span className="text-accent-foreground">
                 It looks like you're affiliated with{" "}
               </span>
               <br />

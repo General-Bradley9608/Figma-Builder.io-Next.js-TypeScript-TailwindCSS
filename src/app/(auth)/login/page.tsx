@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '@/components/header/Header';
-import LoginForm from '@/components/login/LoginForm';
-import SocialLogin from '@/components/login/SocialLogin';
+import LoginForm from './_components/LoginForm';
+import SocialLogin from './_components/SocialLogin';
 import Footer from '@/components/footer/Footer';
 
 const LoginPage: React.FC = () => { 

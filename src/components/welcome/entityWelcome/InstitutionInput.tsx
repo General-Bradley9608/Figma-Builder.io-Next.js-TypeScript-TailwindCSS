@@ -25,7 +25,7 @@ export default function InstitutionInput({ value, onChange }: InstitutionInputPr
 
   return (
     <div className="flex flex-col w-full mb-4">
-      <label htmlFor="institutionName" className="text-sm font-medium leading-none text-zinc-900 mb-1.5">
+      <label htmlFor="institutionName" className="text-sm font-medium leading-none text-accent-foreground mb-1.5">
         Institution Name
       </label>
       <div className="relative">

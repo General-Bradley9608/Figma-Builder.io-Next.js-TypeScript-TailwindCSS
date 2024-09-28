@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "../../../../components/header/Header";
-import Footer from "../../../../components/footer/Footer";
-import EmailVerificationForm from "@/components/fogotPassword/EmailVerificationForm";
+import Header from "@/components/header/Header";
+import Footer from "@/components/footer/Footer";
+import EmailVerificationForm from "../../_components/EmailVerification";
 
 const EmailVerification: React.FC = () => {
   return (

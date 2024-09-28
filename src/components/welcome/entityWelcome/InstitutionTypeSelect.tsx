@@ -21,7 +21,7 @@ export default function InstitutionTypeSelect({ value, onChange }: InstitutionTy
 
   return (
     <div className="flex flex-col w-full">
-      <label htmlFor="institutionType" className="text-sm font-medium leading-none text-zinc-900 mb-1.5">
+      <label htmlFor="institutionType" className="text-sm font-medium leading-none text-accent-foreground mb-1.5">
         Institution type
       </label>
       <div className="relative">
