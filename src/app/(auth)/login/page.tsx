@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '@/components/Header/Header';
-import LoginForm from './_components/LoginForm';
-import SocialLogin from './_components/SocialLogin';
+import LoginForm from '../_components/LoginForm';
+import SocialLogin from '../_components/SocialLogin';
 import Footer from '@/components/Footer/Footer';
 
 const LoginPage: React.FC = () => { 
@@ -24,22 +24,3 @@ const LoginPage: React.FC = () => {
 };
 
 export default LoginPage;
-
-// 'use client';
-// import { signIn } from 'next-auth/react';
-
-// const LoginPage = () => {
-//   const handleGithubLogin = async () => {
-//     signIn("github");
-//   };
-
-//   return (
-//     <div>
-//       <form action={handleGithubLogin}>
-//         <button>LogIn</button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default LoginPage;
