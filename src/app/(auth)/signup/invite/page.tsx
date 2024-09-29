@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from '@/components/header/Header';
+import Header from '@/components/Header/Header';
 import InviteSignUpForm from '../_components/InviteSignUpForm';
-import Footer from '@/components/footer/Footer';
+import Footer from '@/components/Footer/Footer';
 
 const WelcomePage: React.FC = () => {
   return (

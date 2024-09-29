@@ -3,7 +3,7 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 import { useForm, FieldValues } from 'react-hook-form';
 import { Input } from '@/components/Input';
-import { Button, LinkButton } from '@/components/button';
+import { Button, LinkButton } from '@/components/Button';
 import { AuthTemplate } from './AuthTemplate';
 
 type forgotPasswordFormData = {

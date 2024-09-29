@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "@/components/header/Header";
+import Header from "@/components/Header/Header";
 import MainContent from "@/components/welcome/entityWelcome/onboardingVideo/MainContent";
-import Footer from "@/components/footer/Footer";
+import Footer from "@/components/Footer/Footer";
 
 const PlayCV: React.FC = () => {
   return (

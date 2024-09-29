@@ -48,11 +48,11 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Footer from "@/components/footer/Footer";
+import Footer from "@/components/Footer/Footer";
 import Testimonial from './_components/Testimonial';
 import SignUpForm from "./_components/SignUpForm";
 import SocialSignUp from './_components/SocialSignUp';
-import Header from "@/components/header/Header";
+import Header from "@/components/Header/Header";
 
 interface SignUpPageProps {}
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, ChangeEvent, FormEvent } from "react";
+import { AuthTemplate } from "../../_components/AuthTemplate";
 
 export default function LoginForm() {
   const [accountType, setAccountType] = useState("individual");
@@ -36,6 +37,10 @@ export default function LoginForm() {
   };
 
   return (
+    // <AuthTemplate
+    //   title="Welcome Back👋"
+    //   description="Ready to continue where you left off? Let's get you logged in."
+    // />
     <form
       onSubmit={handleSubmit}
       className="flex flex-col self-center w-full max-w-[416px]"
@@ -166,139 +171,3 @@ export default function LoginForm() {
     </form>
   );
 }
-
-// "use client";
-
-// import { useState, useRef, useCallback } from "react";
-// import { useForm } from "react-hook-form";
-// import Link from "next/link";
-// import { useAuth } from "../../providers/Auth";
-// import { useRouter, useSearchParams } from "next/navigation";
-// import { Input } from "@/elements/Input";
-// type FormData = {
-//   email: string;
-//   password: string;
-// };
-
-// export default function LoginForm() {
-//   const searchParams = useSearchParams();
-//   const allParams = searchParams.toString()
-//     ? `?${searchParams.toString()}`
-//     : "";
-//   const redirect = useRef(searchParams.get("redirect"));
-
-//   const [accountType, setAccountType] = useState("individual");
-//   const { login } = useAuth();
-//   const router = useRouter();
-//   const [error, setError] = useState<string | null>(null);
-
-//   const {
-//     register,
-//     handleSubmit,
-//     formState: { errors, isLoading },
-//   } = useForm<FormData>({
-//     defaultValues: {
-//       email: "",
-//       password: "",
-//     },
-//   });
-
-//   const onSubmit = useCallback(
-//     async (data: FormData) => {
-//       try {
-//         await login(data);
-//         if (redirect?.current) router.push(redirect.current as string);
-//         else router.push("/onboarding");
-//       } catch (_) {
-//         setError(
-//           "There was an error with the credentials provided. Please try again."
-//         );
-//       }
-//     },
-//     [login, router]
-//   );
-
-//   return (
-//     <form
-//       onSubmit={handleSubmit(onSubmit)}
-//       className="flex flex-col self-center w-full max-w-[416px]"
-//     >
-//       <div className="flex flex-col w-full">
-//         <h2 className="text-3xl font-semibold leading-none text-center text-accent-foreground">
-//           Welcome Back👋
-//         </h2>
-//         <p className="gap-1 mt-3 w-full text-sm leading-none text-secondary-foreground">
-//           Ready to continue where you left off? Let's get you logged in.
-//         </p>
-//       </div>
-//       <div className="flex gap-2 items-center p-1.5 mt-6 w-full text-base font-semibold bg-gray-50 rounded-lg border border-gray-100 border-solid">
-//         <button
-//           type="button"
-//           onClick={() => setAccountType("individual")}
-//           className={`overflow-hidden flex-1 shrink gap-2 self-stretch px-3.5 py-2.5 my-auto rounded-lg ${
-//             accountType === "individual"
-//               ? "text-white bg-indigo-600 shadow"
-//               : "text-accent-foreground"
-//           }`}
-//         >
-//           I'm an Individual
-//         </button>
-//         <button
-//           type="button"
-//           onClick={() => setAccountType("entity")}
-//           className={`overflow-hidden flex-1 shrink gap-2 self-stretch px-3.5 py-2.5 my-auto rounded-lg ${
-//             accountType === "entity"
-//               ? "text-white bg-indigo-600 shadow"
-//               : "text-accent-foreground"
-//           }`}
-//         >
-//           I'm an Entity
-//         </button>
-//       </div>
-//       <div className="flex flex-col mt-6 w-full rounded-xl">
-//         <Input
-//           name="email"
-//           label={accountType === "individual" ? "Email Address" : "Work Email"}
-//           required
-//           register={register}
-//           error={errors.email}
-//           type="email"
-//         />
-//         <Input
-//           customClass="mt-5"
-//           name="password"
-//           type="password"
-//           label="Password"
-//           required
-//           register={register}
-//           error={errors.password}
-//         />
-//       </div>
-//       <div className="flex gap-10 justify-between items-center mt-7 w-full">
-//         <label className="flex gap-2 items-center self-stretch my-auto">
-//           <input
-//             type="checkbox"
-//             className="w-4 h-4 bg-white rounded border border-gray-300 border-solid"
-//           />
-//           <span className="text-sm font-medium leading-none text-accent-foreground">
-//             Remember me
-//           </span>
-//         </label>
-//         <Link
-//           href="/forgotpassword"
-//           className="text-sm font-medium leading-none text-indigo-600"
-//         >
-//           Forgot password
-//         </Link>
-//       </div>
-//       <button
-//         type="submit"
-//         className="flex items-start w-full text-base font-semibold text-white rounded-lg mt-7"
-//       >
-//         <span className="overflow-hidden flex-1 shrink gap-2 self-stretch px-5 py-2.5 w-full bg-indigo-600 rounded-lg border border-indigo-600 border-solid shadow-sm min-w-[240px]">
-//           Sign In
-//         </span>
-//       </button>
-//     </form>
-//   );
-// }
