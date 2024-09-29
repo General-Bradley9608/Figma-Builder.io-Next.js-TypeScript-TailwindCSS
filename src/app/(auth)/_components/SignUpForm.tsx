@@ -7,8 +7,6 @@ import { Button, LinkButton } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { Checkbox } from "@/components/Checkbox";
 
-import Link from "next/link";
-
 type loginFormData = {
   email: string;
   password: string;
@@ -36,10 +34,10 @@ export default function LoginForm() {
 
   return (
     <AuthTemplate
-      title="Welcome Back👋"
+      title="Create your Play.CV account"
       description={
         <p className="gap-1 mt-3 w-full text-sm text-center text-secondary-foreground">
-          Ready to continue where you left off? Let's get you logged in.
+          Start your journey to mastering interviews.
         </p>
       }
       body={
@@ -69,6 +67,17 @@ export default function LoginForm() {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col w-full mt-6">
               <Input
+                name="name"
+                label="Full Name"
+                type="text"
+                placeholder="Enter your full name"
+                register={register}
+                required={true}
+                error={errors.email}
+              />
+            </div>
+            <div className="flex flex-col w-full mt-6">
+              <Input
                 name="email"
                 label={`${
                   accountType === "individual" ? "Email" : "Work Email"
@@ -89,21 +98,36 @@ export default function LoginForm() {
                 name="password"
                 label="Password"
                 type="password"
-                placeholder="Enter your password"
+                placeholder="Create a password"
                 register={register}
                 required={true}
                 error={errors.password}
               />
             </div>
-            <div className="flex text-sm justify-between w-full mt-6">
-              <Checkbox size="default" text="Remember me" />
-              <Link href="/forgotpassword" className="text-primary">
-                Forgot Password
-              </Link>
+            <div className="flex flex-col w-full mt-2">Must be at least 8 characters.</div>
+            <div className="flex justify-between w-full mt-6">
+              <Checkbox
+                size="lg"
+                text={
+                  <label
+                    htmlFor="terms"
+                    className="flex-1 text-sm text-accent-foreground"
+                  >
+                    I agree to Play.CV's{" "}
+                    <a href="#" className="underline">
+                      Terms & Conditions
+                    </a>{" "}
+                    and acknowledge the{" "}
+                    <a href="#" className="underline">
+                      Privacy Policy
+                    </a>
+                  </label>
+                }
+              />
             </div>
             <div className="flex flex-col gap-2 mt-6 w-full font-semibold">
               <Button type="submit" className="w-full">
-                Sign In
+                Create account
               </Button>
             </div>
           </form>

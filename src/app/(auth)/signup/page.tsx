@@ -1,67 +1,21 @@
-// import React from "react";
-// import Header from "../../../components/header/Header";
-// import SignUpForm from "../../../components/signup/SignUpForm";
-// import SocialSignUp from "../../../components/signup/SocialSignUp";
-// import Footer from "../../../components/footer/Footer";
-// import Testimonial from "@/components/signup/Testimonial";
+"use client";
 
-// export default function SignUpPage() {
-//   return (
-//     // <div className="flex self-stretch bg-white">
-//     //   <div className="flex w-full bg-white min-h-[960px] max-md:max-w-full">
-//     //     <div className="flex flex-col flex-1 shrink justify-between w-full basis-0 min-w-[240px] max-md:max-w-full">
-//     //     <aside className="flex flex-col flex-1 shrink justify-between basis-28 min-w-[240px] max-md:max-w-full">
-//     //       <Header />
-//     //       <main className="flex flex-col items-center px-8 w-full max-md:px-5 max-md:max-w-full">
-//     //         <div className="flex flex-col max-w-full w-[416px]">
-//     //           <SignUpForm />
-//     //           <SocialSignUp />
-//     //         </div>
-//     //       </main>
-//     //       <Footer />
-//     //       </aside>
-//     //       <Testimonial />
-//     //     </div>
-//     //   </div>
-//     // </div>
-
-
-//     // <main className="flex overflow-hidden flex-col bg-white">
-//     //   <div className="flex flex-wrap w-full bg-white min-h-[960px] max-md:max-w-full">
-//     //     <aside className="flex flex-col flex-1 shrink justify-between basis-28 min-w-[240px] max-md:max-w-full">
-//     //       <Header />
-//     //       <main className="flex flex-col items-center px-8 w-full max-md:px-5 max-md:max-w-full">
-//     //         <div className="flex flex-col max-w-full w-[416px]">
-//     //           <SignUpForm />
-//     //           <SocialSignUp />
-//     //         </div>
-//     //       </main>
-//     //       <div className="flex flex-col items-center px-8 w-full max-md:px-5 max-md:max-w-full" />
-//     //       <Footer />
-//     //     </aside>
-//     //     <Testimonial />
-//     //   </div>
-//     // </main>
-//   );
-// }
-
-'use client';
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import Footer from "@/components/Footer/Footer";
-import Testimonial from './_components/Testimonial';
-import SignUpForm from "./_components/SignUpForm";
-import SocialSignUp from './_components/SocialSignUp';
+import Testimonial from "../_components/Testimonial";
+import SignUpForm from "../_components/SignUpForm";
+import SocialButtons from "../_components/SocialButtons";
 import Header from "@/components/Header/Header";
+import Link from "next/link";
 
 interface SignUpPageProps {}
 
 const SignUpPage: React.FC<SignUpPageProps> = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = [
-    'https://cdn.builder.io/api/v1/image/assets/TEMP/176dd0fc1a13f39016d53e31ebd79fa0e434a184f9bb2e85ee7d6aa60c71166b?placeholderIfAbsent=true&apiKey=56fac90a92e74e049125400e70477bf1',
-    '/image1.jpg',
-    '/image2.jpg',
+    "https://cdn.builder.io/api/v1/image/assets/TEMP/176dd0fc1a13f39016d53e31ebd79fa0e434a184f9bb2e85ee7d6aa60c71166b?placeholderIfAbsent=true&apiKey=56fac90a92e74e049125400e70477bf1",
+    "/image1.jpg",
+    "/image2.jpg",
   ];
 
   useEffect(() => {
@@ -73,7 +27,9 @@ const SignUpPage: React.FC<SignUpPageProps> = () => {
   }, []);
 
   const handlePrevImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    setCurrentImageIndex(
+      (prevIndex) => (prevIndex - 1 + images.length) % images.length
+    );
   };
 
   const handleNextImage = () => {
@@ -88,7 +44,22 @@ const SignUpPage: React.FC<SignUpPageProps> = () => {
           <main className="flex flex-col items-center px-8 w-full max-md:px-5 max-md:max-w-full">
             <div className="flex flex-col max-w-full w-[416px]">
               <SignUpForm />
-              <SocialSignUp />
+              <div className="flex flex-col mt-4 w-full">
+                <div className="flex gap-4 items-center mt-4 w-full text-sm leading-none text-center text-gray-500">
+                  <div className="flex-1 shrink self-stretch my-auto h-px border border-gray-100 border-solid basis-0 w-[150px]" />
+                  <div className="self-stretch my-auto">Or</div>
+                  <div className="flex-1 shrink self-stretch my-auto h-px border border-gray-100 border-solid basis-0 w-[150px]" />
+                </div>
+              </div>
+              <SocialButtons />
+              <div className="flex gap-1 justify-center mt-4 w-full text-sm">
+                <p className="text-secondary-foreground">
+                  Already have an account?{" "}
+                </p>
+                <Link href="/login" className="text-primary">
+                  Log in
+                </Link>
+              </div>
             </div>
           </main>
           <Footer />
@@ -107,14 +78,24 @@ const SignUpPage: React.FC<SignUpPageProps> = () => {
               className="flex gap-3 justify-center items-center w-14 rounded-3xl border border-solid border-white border-opacity-50 min-h-[56px]"
               aria-label="Previous image"
             >
-              <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/1ff5f97beb29c92c8ef08d84174660992937532ed2f66df263d8e6eb3f7206d5?placeholderIfAbsent=true&apiKey=56fac90a92e74e049125400e70477bf1" alt="" className="object-contain self-stretch my-auto w-6 aspect-square" />
+              <img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/1ff5f97beb29c92c8ef08d84174660992937532ed2f66df263d8e6eb3f7206d5?placeholderIfAbsent=true&apiKey=56fac90a92e74e049125400e70477bf1"
+                alt=""
+                className="object-contain self-stretch my-auto w-6 aspect-square"
+              />
             </button>
             <button
               onClick={handleNextImage}
               className="flex gap-3 justify-center items-center w-14 rounded-3xl border border-solid border-white border-opacity-50 min-h-[56px]"
               aria-label="Next image"
             >
-              <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/cc969320eb822628d51d559110ceeb7987aea8e5877e5db88226d2208ef42301?placeholderIfAbsent=true&apiKey=56fac90a92e74e049125400e70477bf1" alt="" className="object-contain self-stretch my-auto w-6 aspect-square" />
+              <img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/cc969320eb822628d51d559110ceeb7987aea8e5877e5db88226d2208ef42301?placeholderIfAbsent=true&apiKey=56fac90a92e74e049125400e70477bf1"
+                alt=""
+                className="object-contain self-stretch my-auto w-6 aspect-square"
+              />
             </button>
           </div>
         </section>

@@ -16,13 +16,14 @@ type Props = {
   className?: string
   placeholder?: string
   error?: any
+  disabled?: boolean
 }
 
 
 const inputVariants = cva(
   cn(
     "whitespace-nowrap ring-offset-background transition-colors overflow-hidden mt-1.5 text-base text-accent-foreground rounded-lg shadow-sm",
-    "disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-offset-2",
+    "disabled:pointer-events-none disabled:bg-[#F9FAFB] disabled:opacity-50 focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-offset-2",
     "border border-slate-300 border-solid focus-visible:border-primary bg-white text-accent-foreground placeholder:text-slate-500 autofill:!bg-white",
   ),
   {
@@ -51,6 +52,7 @@ export const Input: React.FC<Props> = ({
   className = '',
   placeholder='',
   error = null,
+  disabled = false
 }) => {
   return (
     <div className="flex flex-col w-full gap-1.5">
@@ -61,6 +63,7 @@ export const Input: React.FC<Props> = ({
         className={inputVariants({size, className})}
         type={type}
         placeholder={placeholder}
+        disabled={disabled}
         {...register(name, {
           required,
           validate,
