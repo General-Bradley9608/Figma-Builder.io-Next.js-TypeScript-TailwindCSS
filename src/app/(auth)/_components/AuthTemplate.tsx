@@ -8,7 +8,7 @@ const AuthTemplate: React.FC<{
     className?: string,
     emoji?: {
       symbol: string
-      label: string,
+      label?: string,
     },
   }> = ({ className="", title="", description="", emoji={symbol: "", label: ""}, body="" }) => {
   return (

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
-import FooterImage from "@/components/onboarding/FooterImage";
+import FooterImage from "@/app/onboarding/_components/FooterImage";
 
 export default function WelcomePage() {
   const handleClick = () => {

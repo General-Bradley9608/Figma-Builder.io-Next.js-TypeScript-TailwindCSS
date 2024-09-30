@@ -12,7 +12,6 @@ interface PersonaCardProps {
 
 export default function PersonaCard({ image, title, description, defaultStyle, hoverStyle }: PersonaCardProps) {
   const handleClick = () => {
-    console.log(title);
     window.location.href = "/onboarding/careerpath";
   };
 

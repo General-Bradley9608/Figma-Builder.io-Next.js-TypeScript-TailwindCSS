@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import Header from "@/components/onboarding/Header";
+import Header from "../_components/Header";
 import IndustryDropdown from "@/components/onboarding/IndustryDropdown";
 import RoleDropdown from "@/components/onboarding/RoleDropdown";
-import FooterImage from "@/components/onboarding/FooterImage";
+import FooterImage from "../_components/FooterImage";
 import GoalDropdown from "@/components/onboarding/GoalDropdown";
 import DecorateButton from "@/components/onboarding/DecorateButton";
 import { useTheme } from "next-themes";

@@ -49,12 +49,7 @@ export default function InviteSignUpForm({
           <p>{`${userName}!👋`}</p>
         </h1>
       }
-      description={
-        <p className="gap-1 mt-3 w-full text-sm text-center text-secondary-foreground">
-          You've been invited by your institution to join our platform. Let's
-          finish setting up your account.
-        </p>
-      }
+      description="You've been invited by your institution to join our platform. Let's finish setting up your account."
       body={
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col w-full mt-6">

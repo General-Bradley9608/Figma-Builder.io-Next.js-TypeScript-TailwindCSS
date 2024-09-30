@@ -1,36 +1,59 @@
 "use client";
 
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, useRef, useCallback } from "react";
 import { AuthTemplate } from "./AuthTemplate";
 import { useForm, FieldValues } from "react-hook-form";
+import { useRouter, useSearchParams } from "next/navigation";
+
+import { useAuth } from "@/providers/Auth";
 import { Button, LinkButton } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { Checkbox } from "@/components/Checkbox";
 
-type loginFormData = {
+type singupFormData = {
+  name: string;
   email: string;
   password: string;
 };
 
 export default function LoginForm() {
+  const searchParams = useSearchParams();
+  const allParams = searchParams.toString()
+    ? `?${searchParams.toString()}`
+    : "";
+  const redirect = useRef(searchParams.get("redirect"));
+  const router = useRouter();
+
+  const { create } = useAuth();
+
+  const [error, setError] = useState<string | null>(null);
   const [accountType, setAccountType] = useState("individual");
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<loginFormData>({
+  } = useForm<singupFormData>({
     defaultValues: {
+      name: "",
       email: "",
+      password: "",
     },
   });
 
-  const onSubmit = (data: FieldValues) => {
-    console.log("Submitted data: ", data.email, data.password);
-  };
+  const onSubmit = useCallback(
+    async (data: singupFormData) => {
+      try {
+        await create(data);
+        if (redirect?.current) router.push(redirect.current as string);
+        else router.push("/login");
+      }
+      catch(_) {
+        setError("There was an error with the credentials provided. Please try again.");
+      }
+    },
+    [create, router]
+  );
 
   return (
     <AuthTemplate
@@ -104,7 +127,9 @@ export default function LoginForm() {
                 error={errors.password}
               />
             </div>
-            <div className="flex flex-col w-full mt-2">Must be at least 8 characters.</div>
+            <div className="flex flex-col w-full mt-2">
+              Must be at least 8 characters.
+            </div>
             <div className="flex justify-between w-full mt-6">
               <Checkbox
                 size="lg"

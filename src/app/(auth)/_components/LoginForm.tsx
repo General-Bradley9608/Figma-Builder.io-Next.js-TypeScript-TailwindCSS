@@ -1,8 +1,11 @@
 "use client";
 
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, useRef, useCallback } from "react";
 import { AuthTemplate } from "./AuthTemplate";
 import { useForm, FieldValues } from "react-hook-form";
+import { useRouter, useSearchParams } from "next/navigation";
+
+import { useAuth } from "@/providers/Auth";
 import { Button, LinkButton } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { Checkbox } from "@/components/Checkbox";
@@ -15,11 +18,18 @@ type loginFormData = {
 };
 
 export default function LoginForm() {
+  const searchParams = useSearchParams();
+  const allParams = searchParams.toString()
+    ? `?${searchParams.toString()}`
+    : "";
+  const redirect = useRef(searchParams.get("redirect"));
+  const router = useRouter();
+
+  const { login } = useAuth();
+
+  const [error, setError] = useState<string | null>(null);
   const [accountType, setAccountType] = useState("individual");
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+
   const {
     register,
     handleSubmit,
@@ -27,21 +37,28 @@ export default function LoginForm() {
   } = useForm<loginFormData>({
     defaultValues: {
       email: "",
+      password: ""
     },
   });
 
-  const onSubmit = (data: FieldValues) => {
-    console.log("Submitted data: ", data.email, data.password);
-  };
+  const onSubmit = useCallback(
+    async (data: loginFormData) => {
+      try {
+        await login(data);
+        if (redirect?.current) router.push(redirect.current as string);
+        else router.push("/onboarding");
+      }
+      catch(_) {
+        setError("There was an error with the credentials provided. Please try again.");
+      }
+    },
+    [login, router]
+  );
 
   return (
     <AuthTemplate
       title="Welcome Back👋"
-      description={
-        <p className="gap-1 mt-3 w-full text-sm text-center text-secondary-foreground">
-          Ready to continue where you left off? Let's get you logged in.
-        </p>
-      }
+      description="Ready to continue where you left off? Let's get you logged in."
       body={
         <div>
           <div className="flex gap-2 items-center p-1.5 mt-6 w-full text-base font-semibold bg-gray-50 rounded-lg border border-gray-100 border-solid">

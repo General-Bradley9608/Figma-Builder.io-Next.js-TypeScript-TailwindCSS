@@ -38,7 +38,7 @@ export default function PasswordForm() {
 
   return changed ? (
     <AuthTemplate
-      emoji={{ symbol: "🚀", label: "Confused emoji" }}
+      emoji={{ symbol: "🚀" }}
       title="Your password has been changed!"
       description={
         <p className="text-sm leading-none text-center text-secondary-foreground">
@@ -56,7 +56,7 @@ export default function PasswordForm() {
     />
   ) : (
     <AuthTemplate
-      emoji={{ symbol: "🔒", label: "Confused emoji" }}
+      emoji={{ symbol: "🔒" }}
       title="Reset Your Password"
       description={
         <p className="text-sm leading-none text-center text-secondary-foreground">

@@ -25,7 +25,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode; api?: 'rest' | 
 
       if (api === 'gql') {
         const { createUser: user } = await gql(`mutation {
-        createUser(data: { email: "${args.email}", password: "${args.password}", firstName: "${args.firstName}", lastName: "${args.lastName}" }) {
+        createUser(data: { email: "${args.email}", password: "${args.password}", name: "${args.name}" }) {
           ${USER}
         }
       }`)

@@ -1,8 +1,7 @@
 export const USER = `
   id
   email
-  firstName
-  lastName
+  name
 `
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

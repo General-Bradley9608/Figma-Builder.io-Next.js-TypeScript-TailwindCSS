@@ -39,7 +39,7 @@ export default function ForgotPasswordForm() {
       emoji={{symbol: '📧', label: "Email icon"}}
       title='Check Your Inbox!'
       description={
-        <><p>Open your inbox and click the link to reset your password.</p><p>(If you don’t see it, check your spam or junk folder.)</p></>
+        <>Open your inbox and click the link to reset your password.<br/>(If you don’t see it, check your spam or junk folder.)</>
       }
       body={
         <div className="flex flex-col items-center mt-6 max-w-full w-[416px]">

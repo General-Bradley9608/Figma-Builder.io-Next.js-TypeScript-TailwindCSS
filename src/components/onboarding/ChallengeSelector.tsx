@@ -19,7 +19,6 @@ export default function ChallengeSelector({
   onSelectAll,
 }: ChallengeSelectorProps) {
   const handleClick = () => {
-    console.log(selectedChallenges);
     window.location.href = "/onboarding/trainingpath";
   }
 

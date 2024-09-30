@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import Header from "@/components/onboarding/Header";
+import Header from "../_components/Header";
 import ChallengeSelector from "@/components/onboarding/ChallengeSelector";
-import FooterImage from "@/components/onboarding/FooterImage";
+import FooterImage from "../_components/FooterImage";
 import { useTheme } from "next-themes";
 
 interface Challenge {

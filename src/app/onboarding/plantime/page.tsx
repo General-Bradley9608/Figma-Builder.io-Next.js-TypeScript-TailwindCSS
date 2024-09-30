@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, FormEvent, ChangeEvent } from "react";
-import Header from "@/components/onboarding/Header";
+import Header from "../_components/Header";
 import TrainingTimePicker from "@/components/onboarding/TrainingTimePicker";
 import InterviewTimePicker from "@/components/onboarding/InterviewTimePicker";
-import FooterImage from "@/components/onboarding/FooterImage";
+import FooterImage from "../_components/FooterImage";
 import DecorateButton from "@/components/onboarding/DecorateButton";
 import { useTheme } from "next-themes";
 

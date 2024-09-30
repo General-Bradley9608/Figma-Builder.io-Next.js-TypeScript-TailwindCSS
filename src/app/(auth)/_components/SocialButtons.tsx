@@ -28,6 +28,7 @@ export default function SocialLogin() {
       <div className="flex flex-wrap gap-3 justify-center items-center mt-4 w-full">
         {socialButtons.slice(0, 3).map((button, index) => (
           <LinkButton
+            key={index}
             href={button.href}
             children={<img src={button.src}></img>}
             className="flex flex-1 justify-center items-center rounded-lg border border-gray-300 border-solid"
