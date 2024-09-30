@@ -9,17 +9,17 @@ export default function SocialLogin() {
     {
       src: "https://cdn.builder.io/api/v1/image/assets/TEMP/3e10bc7533a164e0031fd942cf27b1993be15f18a743c75d89a9bd4ab735e295?placeholderIfAbsent=true&apiKey=03171c0a35c24f47becb1e98f7ef506f",
       alt: "Google login",
-      href: "/api/oauth/signin/google",
+      href: `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/oauth/signin/google`,
     },
     {
       src: "https://cdn.builder.io/api/v1/image/assets/TEMP/7b0be1e5c6c6c1af2cdf805f58f6ee6ca33254447f8dc6d3b58c283fd11c5806?placeholderIfAbsent=true&apiKey=03171c0a35c24f47becb1e98f7ef506f",
       alt: "Facebook login",
-      href: "/api/oauth/signin/facebook",
+      href: `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/oauth/signin/facebook`,
     },
     {
       src: "https://cdn.builder.io/api/v1/image/assets/TEMP/fd7e4d479508997b73ae02ed81daaf6984eb664bd24c49e635370cbfab5eac99?placeholderIfAbsent=true&apiKey=03171c0a35c24f47becb1e98f7ef506f",
       alt: "LinkedIn login",
-      href: "/api/oauth/signin/linkedin",
+      href: `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/oauth/signin/linkedin`,
     },
   ];
 
