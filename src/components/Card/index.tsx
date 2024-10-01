@@ -8,6 +8,7 @@ interface CardProps {
   description: string;
   defaultStyle: string;
   hoverStyle: string;
+  handleClick: () => void;
 }
 
 export default function Card({
@@ -16,10 +17,8 @@ export default function Card({
   description,
   defaultStyle,
   hoverStyle,
+  handleClick
 }: CardProps) {
-  const handleClick = () => {
-    window.location.href = "/onboarding/careerpath";
-  };
 
   return (
     <div

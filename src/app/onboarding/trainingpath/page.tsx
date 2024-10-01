@@ -1,9 +1,9 @@
 'use client';
 
 import React from "react";
-import Header from "../_components/Header";
+import Header from "../_components/Header/Header";
 import TrainingOption from "@/components/onboarding/TrainingOption";
-import FooterImage from "../_components/FooterImage";
+import FooterImage from "../_components/Footer/FooterImage";
 import { useTheme } from "next-themes";
 
 interface TrainingPathProps {}

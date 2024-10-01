@@ -1,22 +1,47 @@
-import { cn } from "@/lib/utils";
 import React from "react";
-import Header from "./Header";
-import { FormBody } from "./FormBody";
-import FooterImage from "./FooterImage";
+import { useTheme } from "next-themes";
+
+import Header from "./Header/Header";
+import { FormBody } from "./FormBody/FormBody";
+import FooterImage from "./Footer/FooterImage";
 
 const OnboardingTemplate: React.FC<{
-  title: React.ReactNode;
-  body: React.ReactNode;
-  className: string;
-}> = ({ title = "", body = "", className = "" }) => {
+  headerTitle?: string;
+  headerSubTitle?: string;
+  bodyTitle?: string;
+  bodyTitleClassName?: string;
+  children?: React.ReactNode;
+  handleBackClick: () => void;
+}> = ({
+  headerTitle = "",
+  headerSubTitle = "",
+  bodyTitle = "",
+  bodyTitleClassName = "",
+  children,
+  handleBackClick,
+}) => {
+  const { theme } = useTheme();
+
   return (
     <main className="flex overflow-hidden flex-col bg-white dark:bg-gradient-to-b dark:from-[#5d5fef] dark:via-[#6E6FF1] dark:to-[#BCBDF7] min-h-screen">
-      <div className="flex relative flex-col items-center justify-center py-14 w-full min-h-[1024px] max-md:max-w-full">
-        <div className="flex relative flex-col items-center justify-center w-full max-w-[1110px] max-md:max-w-full">
-          {/* <Header /> */}
-          {/* <FormBody /> */}
+      <Header
+        className=""
+        title={headerTitle}
+        subtitle={headerSubTitle}
+        onClick={handleBackClick}
+      />
+      <div className="flex relative flex-col items-center justify-center w-full lg:h-[768px] md:h-[512px] h-[full] max-w-full">
+        <div className="flex relative flex-col items-center justify-center w-full max-w-full px-2 sm:px-4">
+          <FormBody
+            title={bodyTitle}
+            titleClassName={bodyTitleClassName}
+          >{children}</FormBody>
         </div>
-        {/* <FooterImage /> */}
+        {theme === "dark" ? (
+          <FooterImage path="/02-1.png" alt="" />
+        ) : (
+          <FooterImage path="/02.png" alt="" />
+        )}
       </div>
     </main>
   );

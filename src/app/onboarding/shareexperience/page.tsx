@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import UploadArea from "@/components/onboarding/UploadArea";
-import Header from "../_components/Header";
-import FooterImage from "../_components/FooterImage";
+import Header from "../_components/Header/Header";
+import FooterImage from "../_components/Footer/FooterImage";
 import { useTheme } from "next-themes";
 
 interface UploadExperienceProps {

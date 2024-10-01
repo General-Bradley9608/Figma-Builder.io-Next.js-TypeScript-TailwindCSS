@@ -15,7 +15,7 @@ body {
 }
 
 @layer base {
-  .light {
+  :root {
     --primary: #465FF1;
     --primary-foreground: #FFFFFF;
     --secondary: #FAFBFE;
