@@ -20,25 +20,22 @@ export default function ChooseWork({}: ChooseWorkProps) {
       image: theme === "dark" ? "/09-1.png" : "/09.png",
       title: "Student",
       description: "Currently still learning",
-      defaultStyle: "bg-zinc-50 text-black dark:text-white dark:bg-[#8889F3]",
-      hoverStyle:
-        "hover:bg-[#465FF1] hover:text-white dark:hover:bg-[#465FF1] dark:hover:text-white",
+      defaultStyle: "bg-accent text-black dark:text-white dark:bg-[#8889F3]",
+      hoverStyle: "hover:bg-primary hover:text-primary-foreground dark:hover:bg-blue-600 dark:hover:text-white",
     },
     {
       image: theme === "dark" ? "/10-1.png" : "/10.png",
       title: "Working Professional",
       description: "Have a job but looking for opportunities",
-      defaultStyle: "bg-zinc-50 text-black dark:text-white dark:bg-[#8889F3]",
-      hoverStyle:
-        "hover:bg-[#465FF1] hover:text-white dark:hover:bg-[#465FF1] dark:hover:text-white",
+      defaultStyle: "bg-accent text-black dark:text-white dark:bg-[#8889F3]",
+      hoverStyle: "hover:bg-primary hover:text-primary-foreground dark:hover:bg-blue-600 dark:hover:text-white",
     },
     {
       image: theme === "dark" ? "/11-1.png" : "/11.png",
       title: "Currently Not Working",
       description: "Have a job but looking for opportunities",
-      defaultStyle: "bg-zinc-50 text-black dark:text-white dark:bg-[#8889F3]",
-      hoverStyle:
-        "hover:bg-[#465FF1] hover:text-white dark:hover:bg-[#465FF1] dark:hover:text-white",
+      defaultStyle: "bg-accent text-black dark:text-white dark:bg-[#8889F3]",
+      hoverStyle: "hover:bg-primary hover:text-primary-foreground dark:hover:bg-blue-600 dark:hover:text-white",
     },
   ];
 

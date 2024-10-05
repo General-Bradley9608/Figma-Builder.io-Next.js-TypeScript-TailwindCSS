@@ -11,7 +11,7 @@ import { Button } from "@/components/Button";
 import { useAuth } from "@/providers/Auth";
 import { hourOptions, minuteOptions, weekOptions } from "@/lib/options";
 
-import DecorateButton from "@/components/onboarding/DecorateButton";
+// import DecorateButton from "@/components/onboarding/DecorateButton";
 
 export default function PracticeTimePlanner() {
   const { theme } = useTheme();

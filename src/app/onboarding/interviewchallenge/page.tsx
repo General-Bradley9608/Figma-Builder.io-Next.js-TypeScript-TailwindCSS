@@ -7,7 +7,7 @@ import { set, useForm } from "react-hook-form";
 
 import { useAuth } from "@/providers/Auth";
 import { OnboardingTemplate } from "../_components/OnboardingTemplate";
-import ChallengeSelector from "@/components/onboarding/ChallengeSelector";
+import ChallengeButton from "../_components/ChallengeButton/ChallengeButton";
 import { Button } from "@/components/Button";
 import { cp } from "fs";
 
@@ -104,7 +104,7 @@ export default function InterviewChallenges() {
         className="flex flex-col max-w-full font-bold"
       >
         <div className="flex flex-wrap justify-center w-full md:mt-10 md:max-w-full">
-          <ChallengeSelector
+          <ChallengeButton
             challenges={challenges}
             selectedChallenges={selectedChallenges}
             onChallengeToggle={handleChallengeToggle}

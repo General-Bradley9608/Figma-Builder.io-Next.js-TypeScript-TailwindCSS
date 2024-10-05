@@ -11,7 +11,7 @@ import { Button } from "@/components/Button";
 import { useAuth } from "@/providers/Auth";
 import { dayOptions, monthOptions } from "@/lib/options";
 
-import DecorateButton from "@/components/onboarding/DecorateButton";
+// import DecorateButton from "@/components/onboarding/DecorateButton";
 
 export default function PracticeTimePlanner() {
   const { theme } = useTheme();
@@ -33,6 +33,7 @@ export default function PracticeTimePlanner() {
 
   const onSubmit = useCallback(async () => {
     try {
+        console.log(selectedDay, selectedMonth);
       const req = await fetch(
         `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/users/${user?.id}`,
         {

@@ -18,23 +18,17 @@ export default function TrainingPath({}: TrainingPathProps) {
   const trainingOptions = [
     {
       title: "Structured Program",
-      description:
-        "Get a daily practice schedule with a personalized plan and calendar.",
-      image:
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/2134b8003f4be0dba69f7e77d299942c97378b02852eb43a51ec72d1a3c50864?placeholderIfAbsent=true&apiKey=d9bf0d577dc74ba79e889f5b65cafa8b",
-      defaultStyle: "bg-zinc-300 text-black dark:bg-[#9FA0F5] dark:text-white",
-      hoverStyle:
-        "hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white",
+      description: "Get a daily practice schedule with a personalized plan and calendar.",
+      image: theme === "dark" ? "/12-1.svg" : "/12.svg",
+      defaultStyle: "bg-accent text-black dark:text-white dark:bg-[#8889F3]",
+      hoverStyle: "hover:bg-primary hover:text-primary-foreground dark:hover:bg-blue-600 dark:hover:text-white",
     },
     {
       title: "Freestyle Practice",
-      description:
-        "Practice interviews anytime you want, whenever it suits you.",
-      image:
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/cd42e1f75462bcd4cf77b44a074fdbc6c809a1b092660571907f6415b6dabc8c?placeholderIfAbsent=true&apiKey=d9bf0d577dc74ba79e889f5b65cafa8b",
-      defaultStyle: "bg-zinc-300 text-black dark:bg-[#9FA0F5] dark:text-white",
-      hoverStyle:
-        "hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white",
+      description: "Practice interviews anytime you want, whenever it suits you.",
+      image: theme === "dark" ? "/13-1.svg" : "/13.svg",
+      defaultStyle: "bg-accent text-black dark:text-white dark:bg-[#8889F3]",
+      hoverStyle: "hover:bg-primary hover:text-primary-foreground dark:hover:bg-blue-600 dark:hover:text-white",
     },
   ];
 
@@ -55,14 +49,14 @@ export default function TrainingPath({}: TrainingPathProps) {
           body: JSON.stringify({
             onboarding: {
               trainingPlan: {
-                trainingType: title
+                trainingType: title,
               },
             },
           }),
         }
       );
       if (req.ok) {
-        router.push("/onboarding/plantime");
+        router.push("/onboarding/allset");
       } else {
         console.error("Failed to update user data");
       }

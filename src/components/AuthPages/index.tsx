@@ -1,7 +1,6 @@
 import { ReactNode, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useAuth } from "@/providers/Auth";
-import { usePathname } from "next/navigation";
 
 interface AuthPagesProps {
   children: ReactNode;
@@ -22,14 +21,18 @@ const AuthPages = ({ children }: AuthPagesProps) => {
     const publicPaths = [
       "/login",
       "/signup",
-      "/signup/invite",
+      "/invite",
       "/forgotpassword",
-      "/forgotpassword/resetpassword",
-      "/",
+      "/resetpassword",
     ];
+    const exactPaths = [
+      "/",
+    ]
 
-    const pathIsPublic = publicPaths.includes(pathname);
+    const pathIsPublic = publicPaths.some(path => pathname.startsWith(path))
+      || exactPaths.includes(pathname);
 
+    console.log(user, pathname, pathIsPublic);
     if (!user && !pathIsPublic) {
       // console.log(user);
       router.push("/login");

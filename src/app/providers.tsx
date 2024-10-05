@@ -14,13 +14,11 @@ const Providers: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   return (
     <AuthProvider api="rest">
-      {/* <AuthPages> */}
-        {mounted ? (
-          <ThemeProvider attribute="class">{children}</ThemeProvider>
-        ) : (
-          <></>
-        )}
-      {/* </AuthPages> */}
+      {mounted ? (
+        <ThemeProvider attribute="class">{children}</ThemeProvider>
+      ) : (
+        <></>
+      )}
     </AuthProvider>
   );
 };

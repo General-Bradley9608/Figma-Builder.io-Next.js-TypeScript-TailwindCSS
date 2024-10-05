@@ -5,6 +5,7 @@ import React, {
   useCallback,
   useContext,
   useEffect,
+  useRef,
   useState,
 } from "react";
 
@@ -19,14 +20,20 @@ import {
   Logout,
   ResetPassword,
 } from "./types";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 const Context = createContext({} as AuthContext);
+
+const SUCCESS_REDIRECT_PATH = "/onboarding" // TODO: change to "/dashboard"
+const FAIL_REDIRECT_PATH = "/login"
 
 export const AuthProvider: React.FC<{
   children: React.ReactNode;
   api?: "rest" | "gql";
 }> = ({ children, api = "rest" }) => {
   const [user, setUser] = useState<User | null>();
+  const router = useRouter();
+  const currentPath = usePathname();
 
   const create = useCallback<Create>(
     async (args) => {
@@ -98,35 +105,59 @@ export const AuthProvider: React.FC<{
     }
   }, [api]);
 
+  const autoRedirect = (me: User | null | undefined) => {
+    const authPaths = [
+      "/login",
+      "/signup",
+      "/invite",
+      "/forgotpassword",
+      "/resetpassword",
+    ];
+    const exactPaths = [
+      "/",
+    ]
+    const isAuthPath = authPaths.some(path => currentPath.startsWith(path))
+    const isExactPath = exactPaths.includes(currentPath);
+    
+    if (me && isAuthPath) router.push(SUCCESS_REDIRECT_PATH);
+    if (!me && !isAuthPath && !isExactPath) {
+      router.push(`${FAIL_REDIRECT_PATH}?redirect=${currentPath}`);
+    }
+  }
+
+  const fetchMe = async () => {
+    if (api === "rest") {
+      const me = await rest(
+        `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/users/me`,
+        {},
+        {
+          method: "GET",
+        }
+      );
+      autoRedirect(me)
+      setUser(me);
+    }
+
+    if (api === "gql") {
+      const { meUser } = await gql(`query {
+        meUser {
+          user {
+            ${USER}
+          }
+          exp
+        }
+      }`);
+
+      autoRedirect(meUser.user)
+      setUser(meUser.user);
+    }
+  };
+
   // On mount, get user and set
   useEffect(() => {
-    const fetchMe = async () => {
-      if (api === "rest") {
-        const user = await rest(
-          `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/users/me`,
-          {},
-          {
-            method: "GET",
-          }
-        );
-        setUser(user);
-      }
-
-      if (api === "gql") {
-        const { meUser } = await gql(`query {
-          meUser {
-            user {
-              ${USER}
-            }
-            exp
-          }
-        }`);
-
-        setUser(meUser.user);
-      }
-    };
-
-    fetchMe();
+    if (!user) {
+      fetchMe();
+    }
   }, [api]);
 
   const forgotPassword = useCallback<ForgotPassword>(
