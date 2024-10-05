@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
-import { AuthTemplate } from "./AuthTemplate";
 import { useForm, FieldValues } from "react-hook-form";
 import { useRouter, useSearchParams } from "next/navigation";
 
+import { AuthTemplate } from "./AuthTemplate";
 import { useAuth } from "@/providers/Auth";
 import { Button, LinkButton } from "@/components/Button";
 import { Input } from "@/components/Input";

@@ -21,7 +21,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} bg-white`}>
         <Providers>
+          {/* <AuthPages> */}
           {children}
+          {/* </AuthPages> */}
         </Providers>
       </body>
     </html>

@@ -70,6 +70,10 @@ export interface User {
   loginAttempts?: number | null;
   lockUntil?: string | null;
   password: string | null;
+  social: {
+    issuer: 'google' | 'facebook' | 'linkedin' | '';
+    userId: string;
+  }
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -104,8 +108,8 @@ export interface Tenant {
         id?: string | null;
       }[]
     | null;
-  fromName: string;
-  fromAddress: string;
+  fromName?: string;
+  fromAddress?: string;
   transportOptions: {
     host: string;
     port: number;
@@ -113,7 +117,7 @@ export interface Tenant {
     pass: string;
     secure?: boolean | null;
   };
-  template: {
+  template?: {
     [k: string]: unknown;
   }[];
   languages?: 'en'[] | null;

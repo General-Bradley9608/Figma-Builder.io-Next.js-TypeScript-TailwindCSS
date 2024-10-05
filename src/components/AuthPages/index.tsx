@@ -12,7 +12,11 @@ const AuthPages = ({ children }: AuthPagesProps) => {
   const router = useRouter();
   const pathname = usePathname();
 
-  console.log('🚀', user);
+  console.log(user);
+  // console.log(router);
+  // console.log(pathname);
+
+  // console.log('🚀', user);
 
   useEffect(() => {
     const publicPaths = [
@@ -23,10 +27,11 @@ const AuthPages = ({ children }: AuthPagesProps) => {
       "/forgotpassword/resetpassword",
       "/",
     ];
+
     const pathIsPublic = publicPaths.includes(pathname);
 
     if (!user && !pathIsPublic) {
-    //   console.log(user);
+      // console.log(user);
       router.push("/login");
     }
   }, [user, pathname, router]);

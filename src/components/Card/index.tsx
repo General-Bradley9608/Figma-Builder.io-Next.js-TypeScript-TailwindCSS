@@ -8,7 +8,7 @@ interface CardProps {
   description: string;
   defaultStyle: string;
   hoverStyle: string;
-  handleClick: () => void;
+  handleClick: (title: string) => void;
 }
 
 export default function Card({
@@ -22,7 +22,7 @@ export default function Card({
 
   return (
     <div
-      onClick={handleClick}
+      onClick={() => handleClick(title)}
       className={`flex flex-col grow items-center px-6 py-5 rounded-3xl min-w-[240px] w-[229px] cursor-pointer max-md:px-5 ${defaultStyle} ${hoverStyle} `}
     >
       <img

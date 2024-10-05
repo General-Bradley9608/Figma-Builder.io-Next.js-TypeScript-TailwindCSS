@@ -1,10 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
-import Header from "../_components/Header/Header";
-import ChallengeSelector from "@/components/onboarding/ChallengeSelector";
-import FooterImage from "../_components/Footer/FooterImage";
+import React, { useCallback, useState } from "react";
 import { useTheme } from "next-themes";
+import { useRouter } from "next/navigation";
+import { set, useForm } from "react-hook-form";
+
+import { useAuth } from "@/providers/Auth";
+import { OnboardingTemplate } from "../_components/OnboardingTemplate";
+import ChallengeSelector from "@/components/onboarding/ChallengeSelector";
+import { Button } from "@/components/Button";
+import { cp } from "fs";
 
 interface Challenge {
   emoji: string;
@@ -14,6 +19,8 @@ interface Challenge {
 export default function InterviewChallenges() {
   const [selectedChallenges, setSelectedChallenges] = useState<string[]>([]);
   const { theme } = useTheme();
+  const router = useRouter();
+  const { user } = useAuth();
 
   const challenges: Challenge[] = [
     { emoji: "😰", text: "Nervousness" },
@@ -29,6 +36,17 @@ export default function InterviewChallenges() {
     { emoji: "🤷🏻", text: "Other" },
   ];
 
+  const {
+    handleSubmit,
+    formState: { errors },
+  } = useForm<{
+    challenges: string[];
+  }>({
+    defaultValues: {
+      challenges: [],
+    },
+  });
+
   const handleChallengeToggle = (challenge: string) => {
     setSelectedChallenges((prev) =>
       prev.includes(challenge)
@@ -42,31 +60,66 @@ export default function InterviewChallenges() {
   };
 
   const handleBackClick = () => {
-    window.location.href = "/onboarding/shareexperience";
-  }
+    router.push("/onboarding/shareexperience");
+  };
+
+  const onSubmit = useCallback(async () => {
+    try {
+      console.log(selectedChallenges);
+      const req = await fetch(
+        `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/users/${user?.id}`,
+        {
+          method: "PATCH",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            onboarding: {
+              challenge: selectedChallenges,
+            },
+          }),
+        }
+      );
+      if (req.ok) {
+        router.push("/onboarding/trainingpath");
+      } else {
+        console.error("Error:", req.statusText);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }, [selectedChallenges, user]);
 
   return (
-    <main className="flex overflow-hidden flex-col bg-white dark:bg-gradient-to-b dark:from-[#5d5fef] dark:via-[#6E6FF1] dark:to-[#BCBDF7] min-h-screen">
-      <div className="flex relative flex-col items-center justify-center py-14 w-full min-h-[1024px] max-md:max-w-full">
-        <div className="flex relative flex-col items-center justify-center w-full max-w-[1110px] max-md:max-w-full">
-          <Header
-            title="Let's tackle your challenges"
-            subtitle="Help us understand your interview challenges and what you want to improve."
-            onClick={handleBackClick}
-          />
+    <OnboardingTemplate
+      headerTitle="Let's tackle your challenges"
+      headerSubTitle="Help us understand your interview challenges and what you want to improve."
+      bodyTitle="My interivew challenges are..."
+      bodyTitleClassName=""
+      handleBackClick={handleBackClick}
+    >
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col max-w-full font-bold"
+      >
+        <div className="flex flex-wrap justify-center w-full md:mt-10 md:max-w-full">
           <ChallengeSelector
             challenges={challenges}
             selectedChallenges={selectedChallenges}
             onChallengeToggle={handleChallengeToggle}
             onSelectAll={handleSelectAll}
-          />
+          />{" "}
+          <div className="flex gap-4 items-center justify-center mt-12 text-base font-semibold md:mt-10">
+            <Button
+              type="submit"
+              variant={theme === "dark" ? "secondary" : "default"}
+            >
+              Continue
+            </Button>
+          </div>
         </div>
-        {theme === "dark" ? (
-          <FooterImage path="/05-1.png" alt="" />
-        ) : (
-          <FooterImage path="/05.png" alt="" />
-        )}
-      </div>
-    </main>
+      </form>
+    </OnboardingTemplate>
   );
-};
+}

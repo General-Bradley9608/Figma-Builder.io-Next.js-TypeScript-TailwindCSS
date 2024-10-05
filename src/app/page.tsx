@@ -2,15 +2,14 @@
 
 import React, { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
+
+import { useAuth } from "@/providers/Auth";
 import FooterImage from "@/app/onboarding/_components/Footer/FooterImage";
 
 export default function WelcomePage() {
-  const handleClick = () => {
-    window.location.href = "/onboarding/chooseexperience";
-  };
-
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+  const { logout } = useAuth();
 
   useEffect(() => {
     setMounted(true);
@@ -19,6 +18,10 @@ export default function WelcomePage() {
   if (!mounted) {
     return null;
   }
+
+  const handleClick = () => {
+    logout();
+  };
 
   const onChangeTheme = () => {
     if (theme === "dark") {

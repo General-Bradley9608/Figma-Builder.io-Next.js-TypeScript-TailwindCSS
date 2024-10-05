@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import React from "react";
-import DecorateButton from "../DecorateButton";
+import DecorateButton from "../DecorateButton/DecorateButton";
 
 const FormBody: React.FC<{
   title: string;
@@ -12,7 +12,7 @@ const FormBody: React.FC<{
       <div className="flex w-full justify-center">
         <h1
           className={cn(
-            "text-center text-black dark:text-white max-md:max-w-full text-4xl font-semibold",
+            "text-center text-black dark:text-white max-md:max-w-full text-4xl font-bold",
             titleClassName
           )}
         >

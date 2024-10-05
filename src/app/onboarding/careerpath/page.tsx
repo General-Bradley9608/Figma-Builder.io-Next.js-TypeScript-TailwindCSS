@@ -1,27 +1,57 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
-import { FieldValues } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import { OnboardingTemplate } from "../_components/OnboardingTemplate";
 import { Dropdown } from "@/components/Dropdown";
 import { Button } from "@/components/Button";
 import { industryOptions } from "@/lib/options";
+import { useAuth } from "@/providers/Auth";
 
 export default function IndustryForm() {
   const router = useRouter();
   const { theme } = useTheme();
+  const [selectedIndustry, setSelectedIndustry] = useState("");
+  const { user } = useAuth();
+
+  const {
+    handleSubmit,
+    formState: { errors },
+  } = useForm<{ industry: string }>({
+    defaultValues: {
+      industry: "",
+    },
+  });
 
   const handleBackClick = () => {
     router.push("/onboarding/chooseexperience");
   };
 
-  const handleSubmit = (data: FieldValues) => {
-    console.log(data.industry);
-    // router.push("/onboarding/careerpath/role");
-  };
+  const onSubmit = useCallback(async () => {
+    const req = await fetch(
+      `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/users/${user?.id}`,
+      {
+        method: "PATCH",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          onboarding: {
+            industry: selectedIndustry,
+          },
+        }),
+      }
+    );
+    if (req.ok) {
+      router.push("/onboarding/careerpath/role");
+    } else {
+      console.error("Failed to update user data");
+    }
+  }, [selectedIndustry, router]);
 
   return (
     <OnboardingTemplate
@@ -32,13 +62,15 @@ export default function IndustryForm() {
       handleBackClick={handleBackClick}
     >
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col max-w-full font-bold"
       >
         <div className="flex flex-wrap justify-center w-full max-md:mt-10 max-md:max-w-full">
           <Dropdown
             name="industry"
             options={industryOptions}
+            selectedOption={selectedIndustry}
+            onSelect={(option) => setSelectedIndustry(option)}
             placeholder="Select or write an industry"
           />
           <Button

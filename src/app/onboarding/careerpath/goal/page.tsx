@@ -1,27 +1,65 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
-import { FieldValues } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import { OnboardingTemplate } from "../../_components/OnboardingTemplate";
 import { Dropdown } from "@/components/Dropdown";
 import { Button } from "@/components/Button";
 import { goalOptions } from "@/lib/options";
+import { useAuth } from "@/providers/Auth";
 
 export default function GoalForm() {
   const router = useRouter();
   const { theme } = useTheme();
+  const { user } = useAuth();
+  const [selectedGoal, setSelectedGoal] = useState("");
+
+  const {
+    handleSubmit,
+    formState: { errors },
+  } = useForm<{ goal: string }>({
+    defaultValues: {
+      goal: "",
+    },
+  });
 
   const handleBackClick = () => {
-    router.push("/onboarding/chooseexperience");
+    router.push("/onboarding/careerpath/role");
   };
 
-  const handleSubmit = (data: FieldValues) => {
-    console.log(data.goal);
-    // router.push("/onboarding/careerpath/role");
-  };
+  const onSubmit = useCallback(
+    async () => {
+      try {
+        const req = await fetch(
+          `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/users/${user?.id}`,
+          {
+            method: "PATCH",
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              onboarding: {
+                goal: selectedGoal,
+              },
+            }),
+          }
+        );
+        if (req.ok) {
+          router.push("/onboarding/shareexperience");
+        } else {
+          console.error("Failed to update user data");
+        }
+      }
+      catch (error) {
+        console.error("Error submitting form:", error);
+      }
+    },
+    [selectedGoal, router]
+  );
 
   return (
     <OnboardingTemplate
@@ -32,13 +70,15 @@ export default function GoalForm() {
       handleBackClick={handleBackClick}
     >
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col max-w-full font-bold"
       >
         <div className="flex flex-wrap justify-center w-full">
           <Dropdown
             name="goal"
             options={goalOptions}
+            selectedOption={selectedGoal}
+            onSelect={(option) => setSelectedGoal(option)}
             placeholder="Select or write a goal"
           />
           <Button

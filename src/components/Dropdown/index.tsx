@@ -9,14 +9,27 @@ type Props = {
   options: Array<string>;
   placeholder: string;
   className?: string;
+  selectedOption: string;
+  onSelect: (option: string) => void;
 };
 
-export const Dropdown: React.FC<Props> = ({ name, options, placeholder, className }) => {
+export const Dropdown: React.FC<Props> = ({
+  name,
+  options,
+  placeholder,
+  className,
+  selectedOption,
+  onSelect
+}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("");
 
   return (
-    <div className={cn("mt-8 text-center w-full md:text-6xl sm:text-4xl text-2xl", className)}>
+    <div
+      className={cn(
+        "mt-8 text-center w-full md:text-6xl sm:text-4xl text-2xl",
+        className
+      )}
+    >
       <div className="relative w-full mx-auto">
         <div className="relative">
           <input
@@ -25,7 +38,7 @@ export const Dropdown: React.FC<Props> = ({ name, options, placeholder, classNam
             className="w-full px-4 py-2 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-transparent"
             placeholder={placeholder}
             value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
+            onChange={(e) => onSelect(e.target.value)}
             onClick={() => setIsOpen(!isOpen)}
           />
           <button
@@ -55,7 +68,7 @@ export const Dropdown: React.FC<Props> = ({ name, options, placeholder, classNam
                 key={index}
                 className="px-4 py-2 cursor-pointer hover:bg-gray-100"
                 onClick={() => {
-                  setSelectedOption(option);
+                  onSelect(option);
                   setIsOpen(false);
                 }}
               >

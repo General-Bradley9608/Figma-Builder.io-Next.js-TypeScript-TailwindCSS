@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useCallback } from "react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 
+import { useAuth } from "@/providers/Auth";
 import { OnboardingTemplate } from "../_components/OnboardingTemplate";
 import Card from "@/components/Card";
 
@@ -12,6 +13,7 @@ interface ChooseWorkProps {}
 export default function ChooseWork({}: ChooseWorkProps) {
   const { theme } = useTheme();
   const router = useRouter();
+  const { user } = useAuth();
 
   const personas = [
     {
@@ -44,8 +46,31 @@ export default function ChooseWork({}: ChooseWorkProps) {
     router.push("/onboarding");
   };
 
-  const handleCardClick = () => {
-    router.push("/onboarding/careerpath");
+  const handleCardClick = async (title: string) => {
+    try {
+      const req = await fetch(
+        `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/users/${user?.id}`,
+        {
+          method: "PATCH",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            onboarding: {
+              persona: title,
+            },
+          }),
+        }
+      );
+      if (req.ok) {
+        router.push("/onboarding/careerpath");
+      } else {
+        console.error("Failed to update user data");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

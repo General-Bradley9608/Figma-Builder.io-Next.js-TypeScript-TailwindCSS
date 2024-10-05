@@ -30,7 +30,7 @@ const OnboardingTemplate: React.FC<{
         subtitle={headerSubTitle}
         onClick={handleBackClick}
       />
-      <div className="flex relative flex-col items-center justify-center w-full lg:h-[768px] md:h-[512px] h-[full] max-w-full">
+      <div className="flex relative flex-col items-center justify-center w-full h-[full] max-w-full">
         <div className="flex relative flex-col items-center justify-center w-full max-w-full px-2 sm:px-4">
           <FormBody
             title={bodyTitle}

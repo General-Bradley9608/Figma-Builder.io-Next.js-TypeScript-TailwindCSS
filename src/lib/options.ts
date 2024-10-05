@@ -40,3 +40,13 @@ export const goalOptions = [
   "Achieve work-life balance",
   "Expand my professional network",
 ];
+
+export const hourOptions = Array.from({ length: 24 }, (_, i) => (i + 1).toString());
+
+export const minuteOptions = Array.from({ length: 60 }, (_, i) => (i + 1).toString());
+
+export const weekOptions = ["per day", "per week", "per month"];
+
+export const dayOptions = Array.from({ length: 31 }, (_, i) => (i + 1).toString());
+
+export const monthOptions = Array.from({ length: 12 }, (_, i) => (i + 1).toString());
