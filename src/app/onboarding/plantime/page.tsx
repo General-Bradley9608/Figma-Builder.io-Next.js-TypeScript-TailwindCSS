@@ -55,7 +55,7 @@ export default function PracticeTimePlanner() {
         }
       );
       if (req.ok) {
-        router.push("/onboarding/plantime/interviewdate");
+        router.push("/onboarding/interviewdate");
       } else {
         console.error("Failed to update user data");
       }

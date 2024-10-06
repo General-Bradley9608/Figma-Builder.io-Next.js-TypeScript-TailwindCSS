@@ -9,6 +9,7 @@ type Props = {
   options: Array<string>;
   placeholder: string;
   className?: string;
+  inputClassName?: string;
   selectedOption: string;
   onSelect: (option: string) => void;
 };
@@ -18,8 +19,9 @@ export const Dropdown: React.FC<Props> = ({
   options,
   placeholder,
   className,
+  inputClassName,
   selectedOption,
-  onSelect
+  onSelect,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -35,13 +37,14 @@ export const Dropdown: React.FC<Props> = ({
           <input
             name={name}
             type="text"
-            className="w-full px-4 py-2 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-transparent"
+            className={cn("w-full px-4 py-2 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-transparent placeholder-muted", inputClassName)}
             placeholder={placeholder}
             value={selectedOption}
             onChange={(e) => onSelect(e.target.value)}
             onClick={() => setIsOpen(!isOpen)}
           />
           <button
+            type="button"
             className="absolute inset-y-0 right-0 flex items-center px-4 text-gray-400"
             onClick={() => setIsOpen(!isOpen)}
           >
@@ -62,7 +65,7 @@ export const Dropdown: React.FC<Props> = ({
           </button>
         </div>
         {isOpen && (
-          <ul className="absolute z-10 w-full mt-2 text-sm text-start font-semibold bg-white border rounded-lg shadow-lg dark:text-black">
+          <ul className="absolute z-10 w-full mt-2 text-sm text-start font-semibold bg-white border rounded-lg shadow-lg dark:text-black max-h-80 overflow-y-auto">
             {options.map((option, index) => (
               <li
                 key={index}

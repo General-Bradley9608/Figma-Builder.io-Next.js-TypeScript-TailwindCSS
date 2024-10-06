@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useForm } from "react-hook-form";
 
-import { OnboardingTemplate } from "../../_components/OnboardingTemplate";
+import { OnboardingTemplate } from "../_components/OnboardingTemplate";
 import { Dropdown } from "@/components/Dropdown";
 import { Button } from "@/components/Button";
 import { goalOptions } from "@/lib/options";
@@ -27,7 +27,7 @@ export default function GoalForm() {
   });
 
   const handleBackClick = () => {
-    router.push("/onboarding/careerpath/role");
+    router.push("/onboarding/careerrole");
   };
 
   const onSubmit = useCallback(

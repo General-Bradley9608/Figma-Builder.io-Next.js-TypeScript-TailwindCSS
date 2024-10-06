@@ -1,39 +1,39 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import React, { useState, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
 
-import { OnboardingTemplate } from "../../_components/OnboardingTemplate";
+import { OnboardingTemplate } from "../_components/OnboardingTemplate";
 import { Dropdown } from "@/components/Dropdown";
 import { Button } from "@/components/Button";
+import { levelOptions, roleOptions } from "@/lib/options";
 import { useAuth } from "@/providers/Auth";
-import { dayOptions, monthOptions } from "@/lib/options";
 
-// import DecorateButton from "@/components/onboarding/DecorateButton";
-
-export default function PracticeTimePlanner() {
-  const { theme } = useTheme();
-  const { user } = useAuth();
+export default function RoleForm() {
   const router = useRouter();
-
-  const [selectedDay, setSelectedDay] = useState("");
-  const [selectedMonth, setSelectedMonth] = useState("");
+  const { theme } = useTheme();
+  const [selectedLevel, setSelectedLevel] = useState("");
+  const [selectedRole, setSelectedRole] = useState("");
+  const { user } = useAuth();
 
   const {
     handleSubmit,
     formState: { errors },
-  } = useForm<{ day: string; month: string }>({
+  } = useForm<{ level: String, role: string }>({
     defaultValues: {
-      day: "",
-      month: "",
+      level: "",
+      role: "",
     },
   });
 
+  const handleBackClick = () => {
+    router.push("/onboarding/careerindustry");
+  };
+
   const onSubmit = useCallback(async () => {
     try {
-        console.log(selectedDay, selectedMonth);
       const req = await fetch(
         `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/users/${user?.id}`,
         {
@@ -44,30 +44,26 @@ export default function PracticeTimePlanner() {
           },
           body: JSON.stringify({
             onboarding: {
-              interviewDate: selectedDay + " " + selectedMonth,
+              targetRole: selectedLevel + " " + selectedRole,
             },
           }),
         }
       );
       if (req.ok) {
-        router.push("/onboarding/allset");
+        router.push("/onboarding/careergoal");
       } else {
         console.error("Failed to update user data");
       }
-    } catch (err) {
-      console.error("Error submitting form:", err);
+    } catch (error) {
+      console.error("Error submitting form:", error);
     }
-  }, [selectedDay, selectedMonth, router]);
-
-  const handleBackClick = () => {
-    router.push("/onboarding/plantime");
-  };
+  }, [selectedLevel, selectedRole, router]);
 
   return (
     <OnboardingTemplate
-      headerTitle="Plan your practice time"
-      headerSubTitle="Pick the training time that works for you"
-      bodyTitle="I can dedicate..."
+      headerTitle="Define your career path"
+      headerSubTitle="Share your career aspirations with us"
+      bodyTitle="I'm targeting a role or position"
       bodyTitleClassName=""
       handleBackClick={handleBackClick}
     >
@@ -78,20 +74,19 @@ export default function PracticeTimePlanner() {
         <div className="flex flex-col justify-center w-full max-md:mt-10 max-md:max-w-full">
           <div className="flex flex-col md:flex-row gap-2 max-md:max-w-full">
             <Dropdown
-              name="day"
-              options={dayOptions}
-              selectedOption={selectedDay}
-              onSelect={(option) => setSelectedDay(option)}
-              placeholder="dd"
-              className="sm:max-w-[192px]"
+              name="level"
+              options={levelOptions}
+              selectedOption={selectedLevel}
+              onSelect={(option) => setSelectedLevel(option)}
+              placeholder="Senior"
+              className="sm:max-w-[384px]"
             />
             <Dropdown
-              name="month"
-              options={monthOptions}
-              selectedOption={selectedMonth}
-              onSelect={(option) => setSelectedMonth(option)}
-              placeholder="mm"
-              className="sm:max-w-[192px]"
+              name="role"
+              options={roleOptions}
+              selectedOption={selectedRole}
+              onSelect={(option) => setSelectedRole(option)}
+              placeholder="Select or write a role"
             />
           </div>
           <div className="flex items-center justify-center">

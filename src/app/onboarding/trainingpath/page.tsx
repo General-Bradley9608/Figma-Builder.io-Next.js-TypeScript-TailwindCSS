@@ -56,7 +56,8 @@ export default function TrainingPath({}: TrainingPathProps) {
         }
       );
       if (req.ok) {
-        router.push("/onboarding/allset");
+        if (title === "Structured Program") router.push("/onboarding/plantime");
+        else router.push("/onboarding/interviewdate");
       } else {
         console.error("Failed to update user data");
       }

@@ -20,13 +20,13 @@ export default function PlayCVComponent() {
             loading="lazy"
             src={theme === "dark" ? "/08-1.png" : "/08.png"}
             alt=""
-            className="box-border object-cover overflow-hidden shrink-0 mt-5 w-full aspect-[1.48] max-w-[649px] min-h-[20px] min-w-[20px]"
+            className="mt-5 w-full max-w-[649px]"
           />
           <div className="flex flex-col mt-8 w-full max-md:mt-10 max-md:max-w-full">
-            <h1 className="z-0 self-center text-4xl font-bold text-center dark:text-white">
+            <h1 className="text-4xl font-bold text-center dark:text-primary-foreground">
               You're all set !
             </h1>
-            <p className="z-0 self-center mt-8 text-2xl leading-8 text-center max-md:max-w-full dark:text-white">
+            <p className="mt-8 text-2xl leading-8 text-center max-md:max-w-full dark:text-primary-foreground">
               You're ready to shine! 🌟 Start practicing with our AI-powered
               interview coach and take your skills to the next level.
             </p>

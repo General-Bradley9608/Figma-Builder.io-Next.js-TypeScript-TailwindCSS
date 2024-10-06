@@ -10,8 +10,8 @@ import React, {
 } from "react";
 
 import { User } from "../../payload-types";
-import { gql, USER } from "./gql";
-import { rest } from "./rest";
+import { gql, USER } from "../../lib/gql";
+import { rest } from "../../lib/rest";
 import {
   AuthContext,
   Create,

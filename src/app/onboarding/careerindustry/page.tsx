@@ -47,7 +47,7 @@ export default function IndustryForm() {
       }
     );
     if (req.ok) {
-      router.push("/onboarding/careerpath/role");
+      router.push("/onboarding/careerrole");
     } else {
       console.error("Failed to update user data");
     }

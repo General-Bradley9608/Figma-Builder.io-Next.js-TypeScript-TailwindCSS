@@ -61,7 +61,7 @@ export default function ChooseWork({}: ChooseWorkProps) {
         }
       );
       if (req.ok) {
-        router.push("/onboarding/careerpath");
+        router.push("/onboarding/careerindustry");
       } else {
         console.error("Failed to update user data");
       }

@@ -13,7 +13,7 @@ const AuthTemplate: React.FC<{
   }> = ({ className="", title="", description="", emoji={symbol: "", label: ""}, body="" }) => {
   return (
       <section className={cn("w-full flex justify-center", className)}>
-        <div className="w-full max-w-[416px]">
+        <div className="w-full">
           {emoji.symbol ? <div className="flex justify-center text-6xl font-semibold w-full">
           <div className="flex items-center justify-center px-5 w-[106px] h-[106px] rounded-full bg-neutral-100" role="emoji" aria-label={emoji.label}>
             {emoji.symbol}
