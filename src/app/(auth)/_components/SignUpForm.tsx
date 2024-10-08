@@ -16,7 +16,7 @@ type singupFormData = {
   password: string;
 };
 
-export default function LoginForm() {
+export default function SignupForm() {
   const searchParams = useSearchParams();
   const allParams = searchParams.toString()
     ? `?${searchParams.toString()}`
@@ -58,11 +58,7 @@ export default function LoginForm() {
   return (
     <AuthTemplate
       title="Create your Play.CV account"
-      description={
-        <p className="gap-1 mt-3 w-full text-sm text-center text-secondary-foreground">
-          Start your journey to mastering interviews.
-        </p>
-      }
+      description="Start your journey to mastering interviews."
       body={
         <div>
           <div className="flex gap-2 items-center p-1.5 mt-6 w-full text-base font-semibold bg-gray-50 rounded-lg border border-gray-100 border-solid">

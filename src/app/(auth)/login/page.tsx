@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "@/components/Header/Header";
 import LoginForm from "../_components/LoginForm";
-import SocialButtons from "../_components/SocialButtons";
+import SocialButtons from "../_components/SocialButtons/SocialButtons";
 import Footer from "@/components/Footer/Footer";
 import Link from "next/link";
 

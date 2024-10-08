@@ -24,6 +24,7 @@ export type Logout = () => Promise<void>;
 
 export interface AuthContext {
   user?: User | null;
+  fetchMe: () => void;
   setUser: (user: User | null) => void; // eslint-disable-line no-unused-vars
   logout: Logout;
   login: Login;

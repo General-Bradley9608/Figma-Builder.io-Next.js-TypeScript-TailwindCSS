@@ -10,18 +10,19 @@ import { Dropdown } from "@/components/Dropdown";
 import { Button } from "@/components/Button";
 import { levelOptions, roleOptions } from "@/lib/options";
 import { useAuth } from "@/providers/Auth";
+import DecorateButton from "../_components/DecorateButton/DecorateButton";
 
 export default function RoleForm() {
   const router = useRouter();
   const { theme } = useTheme();
   const [selectedLevel, setSelectedLevel] = useState("");
   const [selectedRole, setSelectedRole] = useState("");
-  const { user } = useAuth();
+  const { user, fetchMe } = useAuth();
 
   const {
     handleSubmit,
     formState: { errors },
-  } = useForm<{ level: String, role: string }>({
+  } = useForm<{ level: String; role: string }>({
     defaultValues: {
       level: "",
       role: "",
@@ -50,6 +51,7 @@ export default function RoleForm() {
         }
       );
       if (req.ok) {
+        fetchMe();
         router.push("/onboarding/careergoal");
       } else {
         console.error("Failed to update user data");
@@ -66,6 +68,13 @@ export default function RoleForm() {
       bodyTitle="I'm targeting a role or position"
       bodyTitleClassName=""
       handleBackClick={handleBackClick}
+      decorateChildren={
+        <DecorateButton
+          icon="🔥"
+          name="Whoa, You're on Fire!"
+          className="-top-12 -left-0 -rotate-[0.18rad] md:-top-20 md:left-0 transition-all"
+        />
+      }
     >
       <form
         onSubmit={handleSubmit(onSubmit)}

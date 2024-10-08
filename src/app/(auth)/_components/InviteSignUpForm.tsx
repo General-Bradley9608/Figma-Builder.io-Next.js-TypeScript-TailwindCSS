@@ -1,12 +1,14 @@
 "use client";
 
-import { useState, FormEvent, ChangeEvent } from "react";
-import { AuthTemplate } from "./AuthTemplate";
+import { useState, useCallback } from "react";
 import { useForm, FieldValues } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+
+import { AuthTemplate } from "./AuthTemplate";
 import { Button, LinkButton } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { Checkbox } from "@/components/Checkbox";
-import Link from "next/link";
 
 interface InviteSignUpFormData {
   userName: string;
@@ -19,12 +21,7 @@ export default function InviteSignUpForm({
   userEmail,
   password,
 }: InviteSignUpFormData) {
-  const [formData, setFormData] = useState({
-    fullname: userName,
-    email: userEmail,
-    password: "",
-    terms: false,
-  });
+  const router =  useRouter();
 
   const {
     register,
@@ -32,22 +29,26 @@ export default function InviteSignUpForm({
     formState: { errors },
   } = useForm<InviteSignUpFormData>({
     defaultValues: {
-      userEmail: "",
       userName: "",
+      userEmail: "",
+      password: "",
     },
   });
 
-  const onSubmit = (data: FieldValues) => {
-    console.log("Submitted data: ", data.email, data.password);
-  };
+  const onSubmit = useCallback(
+    async (data: InviteSignUpFormData) => {
+      console.log(data.password);
+    },
+    [password, router]
+  );
 
   return (
     <AuthTemplate
       title={
-        <h1 className="self-start text-3xl font-semibold leading-10 text-accent-foreground">
+        <div className="self-start text-3xl font-semibold leading-10 text-accent-foreground">
           <p>Welcome to Play.CV, </p>
           <p>{`${userName}!👋`}</p>
-        </h1>
+        </div>
       }
       description="You've been invited by your institution to join our platform. Let's finish setting up your account."
       body={

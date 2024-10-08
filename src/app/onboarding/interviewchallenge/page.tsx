@@ -20,7 +20,7 @@ export default function InterviewChallenges() {
   const [selectedChallenges, setSelectedChallenges] = useState<string[]>([]);
   const { theme } = useTheme();
   const router = useRouter();
-  const { user } = useAuth();
+  const { user, fetchMe } = useAuth();
 
   const challenges: Challenge[] = [
     { emoji: "😰", text: "Nervousness" },
@@ -65,7 +65,6 @@ export default function InterviewChallenges() {
 
   const onSubmit = useCallback(async () => {
     try {
-      console.log(selectedChallenges);
       const req = await fetch(
         `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/users/${user?.id}`,
         {
@@ -82,6 +81,7 @@ export default function InterviewChallenges() {
         }
       );
       if (req.ok) {
+        fetchMe();
         router.push("/onboarding/trainingpath");
       } else {
         console.error("Error:", req.statusText);

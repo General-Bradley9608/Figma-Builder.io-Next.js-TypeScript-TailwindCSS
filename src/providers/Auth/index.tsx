@@ -213,6 +213,7 @@ export const AuthProvider: React.FC<{
     <Context.Provider
       value={{
         user,
+        fetchMe,
         setUser,
         login,
         logout,

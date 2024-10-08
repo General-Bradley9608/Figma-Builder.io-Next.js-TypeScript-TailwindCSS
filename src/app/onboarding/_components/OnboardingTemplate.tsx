@@ -4,6 +4,7 @@ import { useTheme } from "next-themes";
 import Header from "./Header/Header";
 import { FormBody } from "./FormBody/FormBody";
 import FooterImage from "./Footer/FooterImage";
+import DecorateButton from "./DecorateButton/DecorateButton";
 
 const OnboardingTemplate: React.FC<{
   headerTitle?: string;
@@ -11,6 +12,7 @@ const OnboardingTemplate: React.FC<{
   bodyTitle?: string;
   bodyTitleClassName?: string;
   children?: React.ReactNode;
+  decorateChildren?: React.ReactNode | undefined;
   handleBackClick: () => void;
 }> = ({
   headerTitle = "",
@@ -18,6 +20,7 @@ const OnboardingTemplate: React.FC<{
   bodyTitle = "",
   bodyTitleClassName = "",
   children,
+  decorateChildren,
   handleBackClick,
 }) => {
   const { theme } = useTheme();
@@ -35,7 +38,10 @@ const OnboardingTemplate: React.FC<{
           <FormBody
             title={bodyTitle}
             titleClassName={bodyTitleClassName}
-          >{children}</FormBody>
+            decorate={ decorateChildren }
+          >
+            {children}
+          </FormBody>
         </div>
         {theme === "dark" ? (
           <FooterImage path="/02-1.png" alt="" />

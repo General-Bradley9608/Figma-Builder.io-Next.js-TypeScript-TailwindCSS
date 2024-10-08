@@ -10,12 +10,13 @@ import { Dropdown } from "@/components/Dropdown";
 import { Button } from "@/components/Button";
 import { industryOptions } from "@/lib/options";
 import { useAuth } from "@/providers/Auth";
+import DecorateButton from "../_components/DecorateButton/DecorateButton";
 
 export default function IndustryForm() {
   const router = useRouter();
   const { theme } = useTheme();
   const [selectedIndustry, setSelectedIndustry] = useState("");
-  const { user } = useAuth();
+  const { user, fetchMe } = useAuth();
 
   const {
     handleSubmit,
@@ -47,6 +48,7 @@ export default function IndustryForm() {
       }
     );
     if (req.ok) {
+      fetchMe();
       router.push("/onboarding/careerrole");
     } else {
       console.error("Failed to update user data");
@@ -60,6 +62,13 @@ export default function IndustryForm() {
       bodyTitle="I'm interested in..."
       bodyTitleClassName=""
       handleBackClick={handleBackClick}
+      decorateChildren={
+        <DecorateButton
+          icon="👀"
+          name="Ooolala"
+          className="-top-12 -right-4 -rotate-[0.18rad] md:-top-6 md:-right-32 transition-all"
+        />
+      }
     >
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -82,69 +91,5 @@ export default function IndustryForm() {
         </div>
       </form>
     </OnboardingTemplate>
-    // <main className="flex overflow-hidden flex-col bg-white dark:bg-gradient-to-b dark:from-[#5d5fef] dark:via-[#6E6FF1] dark:to-[#BCBDF7] min-h-screen">
-    //   <div className="flex relative flex-col items-center justify-center py-14 w-full min-h-[1024px] max-md:max-w-full">
-    //     <Header
-    //       title="Define your career path"
-    //       subtitle="Share your career aspirations with us"
-    //       onClick={handleBackClick}
-    //     />
-    //     {(() => {
-    //       if (careerDetails.industry === true) {
-    //         return <DecorateButton icon="👀" name="Ooolala" direction="right" position="end" />;
-    //       } else if (careerDetails.role === true) {
-    //         return <DecorateButton icon="🔥" name="Whoa, You're on Fire!" direction="right" position="start" />;
-    //       } else if (careerDetails.goal === true) {
-    //         return <DecorateButton icon="🚀" name="Boom! You got this!" direction="left" position="end" />;
-    //       }
-    //     })()}
-    //     {(() => {
-    //       if (careerDetails.industry === true) {
-    //         return (
-    //           // <IndustryDropdown
-    //           <Dropdown
-    //             placeholder="Select or write a goal"
-    //             options={[
-    //               "Become a team leader",
-    //               "Master my technical skills",
-    //               "Transition to a new industry",
-    //               "Get promoted to a managerial position",
-    //               "Start my own business",
-    //               "Increase my earning potential",
-    //               "Achieve work-life balance",
-    //               "Expand my professional network",
-    //             ]}
-    //             // value={selectedIndustry}
-    //             // onChange={setSelectedIndustry}
-    //           />
-    //         );
-    //       } else if (careerDetails.role === true) {
-    //         return (
-    //           <div></div>
-    //           // <Dropdown />
-    //           // <RoleDropdown value={selectedRole} onChange={setSelectedRole} />
-    //         );
-    //       } else if (careerDetails.goal === true) {
-    //         return (
-    //           <div></div>
-    //           // <Dropdown />
-    //           // <GoalDropdown value={selectedGoal} onChange={setSelectedGoal} />
-    //         );
-    //       }
-    //     })()}
-    //     <button
-    //       type="submit"
-    //       onClick={handleClick}
-    //       className="gap-2 self-center px-5 py-4 mt-8 text-base font-semibold text-white dark:text-blue-500 whitespace-nowrap bg-indigo-600 dark:bg-white rounded-lg min-h-[48px]"
-    //     >
-    //       Continue
-    //     </button>
-    //     {theme === "dark" ? (
-    //       <FooterImage path="/03-1.png" alt="" />
-    //     ) : (
-    //       <FooterImage path="/03.png" alt="" />
-    //     )}
-    //   </div>
-    // </main>
   );
 }

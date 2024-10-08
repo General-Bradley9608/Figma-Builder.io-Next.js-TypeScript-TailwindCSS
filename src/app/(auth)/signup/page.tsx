@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Footer from "@/components/Footer/Footer";
 import Testimonial from "../_components/Testimonial";
 import SignUpForm from "../_components/SignUpForm";
-import SocialButtons from "../_components/SocialButtons";
+import SocialButtons from "../_components/SocialButtons/SocialButtons";
 import Header from "@/components/Header/Header";
 import Link from "next/link";
 
@@ -64,7 +64,7 @@ const SignUpPage: React.FC<SignUpPageProps> = () => {
           </main>
           <Footer />
         </section>
-        <section className="flex relative flex-col flex-1 shrink px-14 pb-14 basis-0 min-h-[960px] min-w-[240px] pt-[657px] max-md:px-5 max-md:pt-24 max-md:max-w-full">
+        {/* <section className="flex relative flex-col flex-1 shrink px-14 pb-14 basis-0 min-h-[960px] min-w-[240px] pt-[657px] max-md:px-5 max-md:pt-24 max-md:max-w-full">
           <img
             loading="lazy"
             src={images[currentImageIndex]}
@@ -98,7 +98,7 @@ const SignUpPage: React.FC<SignUpPageProps> = () => {
               />
             </button>
           </div>
-        </section>
+        </section> */}
       </div>
     </main>
   );

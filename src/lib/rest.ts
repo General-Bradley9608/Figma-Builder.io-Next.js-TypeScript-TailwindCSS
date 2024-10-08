@@ -1,34 +1,46 @@
-import type { User } from '../payload-types'
+import type { User } from "../payload-types";
 
 export const rest = async (
   url: string,
   args?: any, // eslint-disable-line @typescript-eslint/no-explicit-any
-  options?: RequestInit,
+  options?: RequestInit
 ): Promise<User | null | undefined> => {
-  const method = options?.method || 'POST'
+  const method = options?.method || "POST";
 
   try {
     const res = await fetch(url, {
       method,
-      ...(method === 'POST' ? { body: JSON.stringify(args) } : {}),
-      credentials: 'include',
+      ...(method == "POST" ? { body: JSON.stringify(args) } : {}),
+      credentials: "include",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         ...options?.headers,
       },
       ...options,
-    })
+    });
 
-    const { errors, user } = await res.json()
+    // console.log(JSON.stringify([url, {
+    //   method,
+    //   ...(args ? { body: JSON.stringify(args) } : {}),
+    //   credentials: "include",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     ...options?.headers,
+    //   },
+    //   ...options,
+    // }]))
+
+    const { errors, user } = await res.json();
+    // console.log(res)
 
     if (errors) {
-      throw new Error(errors[0].message)
+      throw new Error(errors[0].message);
     }
 
     if (res.ok) {
-      return user
+      return user;
     }
   } catch (e: unknown) {
-    throw new Error(e as string)
+    throw new Error(e as string);
   }
-}
+};

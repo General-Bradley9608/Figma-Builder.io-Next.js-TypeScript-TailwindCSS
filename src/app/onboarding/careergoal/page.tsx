@@ -10,11 +10,12 @@ import { Dropdown } from "@/components/Dropdown";
 import { Button } from "@/components/Button";
 import { goalOptions } from "@/lib/options";
 import { useAuth } from "@/providers/Auth";
+import DecorateButton from "../_components/DecorateButton/DecorateButton";
 
 export default function GoalForm() {
   const router = useRouter();
   const { theme } = useTheme();
-  const { user } = useAuth();
+  const { user, fetchMe } = useAuth();
   const [selectedGoal, setSelectedGoal] = useState("");
 
   const {
@@ -30,36 +31,33 @@ export default function GoalForm() {
     router.push("/onboarding/careerrole");
   };
 
-  const onSubmit = useCallback(
-    async () => {
-      try {
-        const req = await fetch(
-          `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/users/${user?.id}`,
-          {
-            method: "PATCH",
-            credentials: "include",
-            headers: {
-              "Content-Type": "application/json",
+  const onSubmit = useCallback(async () => {
+    try {
+      const req = await fetch(
+        `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/users/${user?.id}`,
+        {
+          method: "PATCH",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            onboarding: {
+              goal: selectedGoal,
             },
-            body: JSON.stringify({
-              onboarding: {
-                goal: selectedGoal,
-              },
-            }),
-          }
-        );
-        if (req.ok) {
-          router.push("/onboarding/shareexperience");
-        } else {
-          console.error("Failed to update user data");
+          }),
         }
+      );
+      if (req.ok) {
+        fetchMe();
+        router.push("/onboarding/shareexperience");
+      } else {
+        console.error("Failed to update user data");
       }
-      catch (error) {
-        console.error("Error submitting form:", error);
-      }
-    },
-    [selectedGoal, router]
-  );
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  }, [selectedGoal, router]);
 
   return (
     <OnboardingTemplate
@@ -68,6 +66,13 @@ export default function GoalForm() {
       bodyTitle="My career goal is to..."
       bodyTitleClassName=""
       handleBackClick={handleBackClick}
+      decorateChildren={
+        <DecorateButton
+          icon="🚀"
+          name="Boom! You got this!"
+          className="-top-12 -right-0 rotate-[0.18rad] md:-top-20 md:-right-10 transition-all"
+        />
+      }
     >
       <form
         onSubmit={handleSubmit(onSubmit)}

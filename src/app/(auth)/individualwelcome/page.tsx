@@ -3,8 +3,8 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import { AuthTemplate } from "../_components/AuthTemplate";
 import { Button } from "@/components/Button";
-import GoodNews from "../_components/welcomeComponents/NewsComponent";
-import ShareLink from "../_components/welcomeComponents/ShareLinkComponent";
+import GoodNews from "../_components/WelcomeComponents/NewsComponent";
+import ShareLink from "../_components/WelcomeComponents/ShareLinkComponent";
 
 const entity = "Harvard Univeristy";
 const userEmail = "hello@example.com";

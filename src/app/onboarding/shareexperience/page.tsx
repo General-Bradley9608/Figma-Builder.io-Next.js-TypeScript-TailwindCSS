@@ -15,8 +15,8 @@ const UploadExperience: React.FC = () => {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const { theme } = useTheme();
   const router = useRouter();
-  const { user } = useAuth();
-
+  const { user, fetchMe } = useAuth();
+  
   const {
     handleSubmit,
     formState: { errors },
@@ -38,7 +38,7 @@ const UploadExperience: React.FC = () => {
   };
 
   const handleBackClick = () => {
-    router.push("/onboarding/careerpath/goal");
+    router.push("/onboarding/careergoal");
   };
 
   const handleSkipClick = () => {
@@ -67,6 +67,7 @@ const UploadExperience: React.FC = () => {
         }
       );
       if (req.ok) {
+        fetchMe();
         router.push("/onboarding/interviewchallenge");
       } else {
         console.error("Error:", req.statusText);

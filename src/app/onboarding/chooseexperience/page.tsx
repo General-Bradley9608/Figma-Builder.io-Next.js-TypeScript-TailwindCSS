@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 
 import { useAuth } from "@/providers/Auth";
 import { OnboardingTemplate } from "../_components/OnboardingTemplate";
+import { rest } from "@/lib/rest";
 import Card from "@/components/Card";
 
 interface ChooseWorkProps {}
@@ -13,7 +14,7 @@ interface ChooseWorkProps {}
 export default function ChooseWork({}: ChooseWorkProps) {
   const { theme } = useTheme();
   const router = useRouter();
-  const { user } = useAuth();
+  const { user, fetchMe } = useAuth();
 
   const personas = [
     {
@@ -21,21 +22,24 @@ export default function ChooseWork({}: ChooseWorkProps) {
       title: "Student",
       description: "Currently still learning",
       defaultStyle: "bg-accent text-black dark:text-white dark:bg-[#8889F3]",
-      hoverStyle: "hover:bg-primary hover:text-primary-foreground dark:hover:bg-blue-600 dark:hover:text-white",
+      hoverStyle:
+        "hover:bg-primary hover:text-primary-foreground dark:hover:bg-blue-600 dark:hover:text-white",
     },
     {
       image: theme === "dark" ? "/10-1.png" : "/10.png",
       title: "Working Professional",
       description: "Have a job but looking for opportunities",
       defaultStyle: "bg-accent text-black dark:text-white dark:bg-[#8889F3]",
-      hoverStyle: "hover:bg-primary hover:text-primary-foreground dark:hover:bg-blue-600 dark:hover:text-white",
+      hoverStyle:
+        "hover:bg-primary hover:text-primary-foreground dark:hover:bg-blue-600 dark:hover:text-white",
     },
     {
       image: theme === "dark" ? "/11-1.png" : "/11.png",
       title: "Currently Not Working",
       description: "Have a job but looking for opportunities",
       defaultStyle: "bg-accent text-black dark:text-white dark:bg-[#8889F3]",
-      hoverStyle: "hover:bg-primary hover:text-primary-foreground dark:hover:bg-blue-600 dark:hover:text-white",
+      hoverStyle:
+        "hover:bg-primary hover:text-primary-foreground dark:hover:bg-blue-600 dark:hover:text-white",
     },
   ];
 
@@ -61,15 +65,13 @@ export default function ChooseWork({}: ChooseWorkProps) {
         }
       );
       if (req.ok) {
+        fetchMe();
         router.push("/onboarding/careerindustry");
-      } else {
-        console.error("Failed to update user data");
-      }
+      } else console.error("Failed to update user data");
     } catch (err) {
       console.log(err);
     }
   };
-
   return (
     <OnboardingTemplate
       headerTitle="Let's get to know you"

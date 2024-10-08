@@ -10,12 +10,11 @@ import { Dropdown } from "@/components/Dropdown";
 import { Button } from "@/components/Button";
 import { useAuth } from "@/providers/Auth";
 import { dayOptions, monthOptions } from "@/lib/options";
-
-// import DecorateButton from "@/components/onboarding/DecorateButton";
+import DecorateButton from "../_components/DecorateButton/DecorateButton";
 
 export default function PracticeTimePlanner() {
   const { theme } = useTheme();
-  const { user } = useAuth();
+  const { user, fetchMe } = useAuth();
   const router = useRouter();
 
   const [selectedDay, setSelectedDay] = useState("");
@@ -54,6 +53,7 @@ export default function PracticeTimePlanner() {
         }
       );
       if (req.ok) {
+        fetchMe();
         router.push("/onboarding/allset");
       } else {
         console.error("Failed to update user data");
@@ -64,16 +64,25 @@ export default function PracticeTimePlanner() {
   }, [selectedDay, selectedMonth, router]);
 
   const handleBackClick = () => {
-    router.push("/onboarding/plantime");
+    console.log(user?.onboarding?.trainingPlan?.trainingType);
+    if (user?.onboarding?.trainingPlan?.trainingType === "freestyle") router.push("/onboarding/trainingpath");
+    else router.push("/onboarding/plantime");
   };
 
   return (
     <OnboardingTemplate
       headerTitle="Plan your practice time"
       headerSubTitle="Pick the training time that works for you"
-      bodyTitle="I can dedicate..."
+      bodyTitle="I have a job interview coming up on..."
       bodyTitleClassName=""
       handleBackClick={handleBackClick}
+      decorateChildren={
+        <DecorateButton
+          icon="💪"
+          name="Power Move!"
+          className="-top-14 -right-0 -rotate-[0.18rad] lg:-top-5 lg:-right-44 transition-al"
+        />
+      }
     >
       <form
         onSubmit={handleSubmit(onSubmit)}

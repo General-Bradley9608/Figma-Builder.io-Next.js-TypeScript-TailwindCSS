@@ -10,12 +10,13 @@ import { Dropdown } from "@/components/Dropdown";
 import { Button } from "@/components/Button";
 import { useAuth } from "@/providers/Auth";
 import { hourOptions, minuteOptions, weekOptions } from "@/lib/options";
+import DecorateButton from "../_components/DecorateButton/DecorateButton";
 
 // import DecorateButton from "@/components/onboarding/DecorateButton";
 
 export default function PracticeTimePlanner() {
   const { theme } = useTheme();
-  const { user } = useAuth();
+  const { user, fetchMe } = useAuth();
   const router = useRouter();
 
   const [selectedHour, setSelectedHour] = useState("");
@@ -55,6 +56,7 @@ export default function PracticeTimePlanner() {
         }
       );
       if (req.ok) {
+        fetchMe();
         router.push("/onboarding/interviewdate");
       } else {
         console.error("Failed to update user data");
@@ -75,6 +77,13 @@ export default function PracticeTimePlanner() {
       bodyTitle="I can dedicate..."
       bodyTitleClassName=""
       handleBackClick={handleBackClick}
+      decorateChildren={
+        <DecorateButton
+          icon="💫"
+          name="Just Magic!"
+          className="-top-12 -right-0 -rotate-[0.18rad] md:-top-10 md:-right-40 transition-al"
+        />
+      }
     >
       <form
         onSubmit={handleSubmit(onSubmit)}
