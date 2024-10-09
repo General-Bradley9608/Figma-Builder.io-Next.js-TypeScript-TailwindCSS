@@ -11,8 +11,8 @@ export interface Config {
     users: User;
     tenants: Tenant;
     files: File;
-    'payload-preferences': PayloadPreference;
-    'payload-migrations': PayloadMigration;
+    "payload-preferences": PayloadPreference;
+    "payload-migrations": PayloadMigration;
   };
   globals: {};
 }
@@ -24,30 +24,34 @@ export interface User {
   id: string;
   name: string;
   onboarding?: {
-    persona?: ('student' | 'professional' | 'noJob') | null;
-    industry?: ('softwareDevelopment' | 'hr') | null;
-    targetRole?: ('projectManager' | 'seniorSoftwareDeveloper') | null;
+    persona?: ("student" | "professional" | "noJob") | null;
+    industry?: string;
+    targetRole?: {
+      level?: string;
+      role?: string;
+    };
+    // targetRole?: ('projectManager' | 'seniorSoftwareDeveloper') | null;
     challenge?:
       | (
-          | 'nervousness'
-          | 'structuringAnswers'
-          | 'eyeContact'
-          | 'speakingClearly'
-          | 'unexpectedQuestions'
-          | 'relevantExperience'
-          | 'culturalBarriers'
-          | 'articulatingComplexIdeas'
-          | 'focusUnderPressure'
-          | 'nonVerbalCommunication'
-          | 'other'
+          | "nervousness"
+          | "structuringAnswers"
+          | "eyeContact"
+          | "speakingClearly"
+          | "unexpectedQuestions"
+          | "relevantExperience"
+          | "culturalBarriers"
+          | "articulatingComplexIdeas"
+          | "focusUnderPressure"
+          | "nonVerbalCommunication"
+          | "other"
         )[]
       | null;
-    goal?: ('projectManager' | 'seniorSoftwareDeveloper') | null;
+    goal?: string;
     trainingPlan?: {
-      trainingType?: ('structured' | 'freestyle') | null;
+      trainingType?: ("structured" | "freestyle") | null;
       hours?: number | null;
       mins?: number | null;
-      per?: ('day' | 'week' | 'month') | null;
+      per?: ("day" | "week" | "month") | null;
     };
     interviewDate?: string | null;
     cv?: string | File | null;
@@ -55,11 +59,11 @@ export interface User {
   tenants?:
     | {
         tenant?: (string | null) | Tenant;
-        role?: ('owner' | 'staff') | null;
+        role?: ("owner" | "staff") | null;
         id?: string | null;
       }[]
     | null;
-  roles?: ('platform-admin' | 'platform-user') | null;
+  roles?: ("platform-admin" | "platform-user") | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -71,9 +75,9 @@ export interface User {
   lockUntil?: string | null;
   password: string | null;
   social: {
-    issuer: 'google' | 'facebook' | 'linkedin' | '';
+    issuer: "google" | "facebook" | "linkedin" | "";
     userId: string;
-  }
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -120,7 +124,7 @@ export interface Tenant {
   template?: {
     [k: string]: unknown;
   }[];
-  languages?: 'en'[] | null;
+  languages?: "en"[] | null;
   status?: boolean | null;
   updatedAt: string;
   createdAt: string;
@@ -132,7 +136,7 @@ export interface Tenant {
 export interface PayloadPreference {
   id: string;
   user: {
-    relationTo: 'users';
+    relationTo: "users";
     value: string | User;
   };
   key?: string | null;
@@ -158,9 +162,4 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
-}
-
-
-declare module 'payload' {
-  export interface GeneratedTypes extends Config {}
 }

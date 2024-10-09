@@ -8,7 +8,7 @@ const FormBody: React.FC<{
   decorate?: React.ReactNode | undefined;
 }> = ({ title = "", titleClassName = "", children, decorate }) => {
   return (
-    <section className="flex flex-col items-center justify-center mt-28 max-w-full w-[908px]">
+    <section className="flex flex-col items-center justify-center mt-56 max-w-full w-[908px]">
       <div className="flex w-full justify-center">
         <h1
           className={cn(

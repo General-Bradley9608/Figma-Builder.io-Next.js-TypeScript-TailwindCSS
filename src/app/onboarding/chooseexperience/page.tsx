@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 
@@ -15,6 +15,7 @@ export default function ChooseWork({}: ChooseWorkProps) {
   const { theme } = useTheme();
   const router = useRouter();
   const { user, fetchMe } = useAuth();
+  const [selected, setSelected] = useState<number>();
 
   const personas = [
     {
@@ -48,6 +49,11 @@ export default function ChooseWork({}: ChooseWorkProps) {
   };
 
   const handleCardClick = async (title: string) => {
+    let personaExperience = "";
+    if (title === "Student") personaExperience = "student";
+    else if (title === "Working Professional")
+      personaExperience = "professional";
+    else personaExperience = "noJob";
     try {
       const req = await fetch(
         `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/users/${user?.id}`,
@@ -59,7 +65,7 @@ export default function ChooseWork({}: ChooseWorkProps) {
           },
           body: JSON.stringify({
             onboarding: {
-              persona: title,
+              persona: personaExperience,
             },
           }),
         }
@@ -72,6 +78,15 @@ export default function ChooseWork({}: ChooseWorkProps) {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    let persona = user?.onboarding?.persona!;
+    if (persona === "student") setSelected(0);
+    if (persona === "professional") setSelected(1);
+    if (persona === "noJob") setSelected(2);
+    console.log(user);
+  }, [user]);
+
   return (
     <OnboardingTemplate
       headerTitle="Let's get to know you"
@@ -82,7 +97,12 @@ export default function ChooseWork({}: ChooseWorkProps) {
     >
       <div className="flex flex-wrap gap-6 mt-12 w-full max-md:mt-10 max-md:max-w-full">
         {personas.map((persona, index) => (
-          <Card key={index} {...persona} handleClick={handleCardClick} />
+          <Card
+            key={index}
+            isSelected={selected === index}
+            {...persona}
+            handleClick={handleCardClick}
+          />
         ))}
       </div>
     </OnboardingTemplate>

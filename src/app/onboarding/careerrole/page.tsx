@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useForm } from "react-hook-form";
@@ -45,7 +45,10 @@ export default function RoleForm() {
           },
           body: JSON.stringify({
             onboarding: {
-              targetRole: selectedLevel + " " + selectedRole,
+              targetRole: {
+                level: selectedLevel,
+                role: selectedRole,
+              },
             },
           }),
         }
@@ -60,6 +63,18 @@ export default function RoleForm() {
       console.error("Error submitting form:", error);
     }
   }, [selectedLevel, selectedRole, router]);
+
+  useEffect(() => {
+    let level = user?.onboarding?.targetRole?.level!;
+    let role = user?.onboarding?.targetRole?.role!;
+    if (level && role) {
+      setSelectedLevel(level);
+      setSelectedRole(role);
+    } else {
+      setSelectedLevel("");
+      setSelectedRole("");
+    }
+  }, [user]);
 
   return (
     <OnboardingTemplate

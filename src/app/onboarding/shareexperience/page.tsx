@@ -1,22 +1,22 @@
 "use client";
 
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
 import { cn } from "@/lib/utils";
 import { OnboardingTemplate } from "../_components/OnboardingTemplate";
-import FileUpload from "@/components/FileUpload";
 import { Button } from "@/components/Button";
 import { useAuth } from "@/providers/Auth";
+import FileUpload from "@/components/FileUpload";
 
 const UploadExperience: React.FC = () => {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const { theme } = useTheme();
   const router = useRouter();
   const { user, fetchMe } = useAuth();
-  
+
   const {
     handleSubmit,
     formState: { errors },
@@ -29,6 +29,7 @@ const UploadExperience: React.FC = () => {
   });
 
   const handleFileUpload = (file: File) => {
+    console.log(file);
     if (file.size <= 25 * 1024 * 1024) {
       // 25MB in bytes
       setUploadedFile(file);
@@ -76,6 +77,11 @@ const UploadExperience: React.FC = () => {
       console.error("Error:", error);
     }
   }, [uploadedFile, router]);
+
+  useEffect(() => {
+    console.log(user?.onboarding?.cv!);
+    // setUploadedFile(user?.onboarding?.cv!);
+  }, []);
 
   return (
     <OnboardingTemplate

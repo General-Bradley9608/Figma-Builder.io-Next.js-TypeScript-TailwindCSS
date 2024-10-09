@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
@@ -64,10 +64,23 @@ export default function PracticeTimePlanner() {
   }, [selectedDay, selectedMonth, router]);
 
   const handleBackClick = () => {
-    console.log(user?.onboarding?.trainingPlan?.trainingType);
-    if (user?.onboarding?.trainingPlan?.trainingType === "freestyle") router.push("/onboarding/trainingpath");
+    if (user?.onboarding?.trainingPlan?.trainingType === "freestyle")
+      router.push("/onboarding/trainingpath");
     else router.push("/onboarding/plantime");
   };
+
+  useEffect(() => {
+    let month = user?.onboarding?.interviewDate?.split("-")[1]!;
+    let day = user?.onboarding?.interviewDate?.split("-")[2].split("T")[0]!;
+
+    if (day && month) {
+      setSelectedDay(day);
+      setSelectedMonth(month);
+    } else {
+      setSelectedDay("");
+      setSelectedMonth("");
+    }
+  }, [user]);
 
   return (
     <OnboardingTemplate

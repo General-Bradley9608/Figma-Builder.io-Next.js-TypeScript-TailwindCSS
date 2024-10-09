@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useForm } from "react-hook-form";
@@ -58,6 +58,14 @@ export default function GoalForm() {
       console.error("Error submitting form:", error);
     }
   }, [selectedGoal, router]);
+
+  useEffect(() => {
+    if (user?.onboarding?.goal) {
+      setSelectedGoal(user.onboarding.goal);
+    } else {
+      setSelectedGoal("");
+    }
+  }, [user]);
 
   return (
     <OnboardingTemplate

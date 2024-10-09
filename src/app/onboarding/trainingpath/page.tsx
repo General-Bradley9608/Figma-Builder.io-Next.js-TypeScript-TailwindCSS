@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 
@@ -9,12 +9,11 @@ import { useAuth } from "@/providers/Auth";
 import { OnboardingTemplate } from "../_components/OnboardingTemplate";
 import { rest } from "../../../lib/rest";
 
-interface TrainingPathProps {}
-
-export default function TrainingPath({}: TrainingPathProps) {
+export default function TrainingPath() {
   const { theme } = useTheme();
   const router = useRouter();
   const { user, fetchMe } = useAuth();
+  const [selected, setSelected] = useState<number>();
 
   const trainingOptions = [
     {
@@ -65,32 +64,6 @@ export default function TrainingPath({}: TrainingPathProps) {
         }
       );
 
-      console.log(user);
-
-      console.log(JSON.stringify([
-        `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/users/${user?.id}`,
-        {
-          method: "PATCH",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            onboarding: {
-              trainingPlan: {
-                trainingType: trainingType,
-              },
-            },
-          }),
-        }
-      ]))
-
-      // const updatedUser = await rest(
-      //   `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/users/${user?.id}`,
-      //   { onboarding: { trainingplan: { trainingType: trainingType } } },
-      //   { method: "PATCH" }
-      // );
-
       if (req.ok) {
         fetchMe();
         if (title === "Structured Program") router.push("/onboarding/plantime");
@@ -103,6 +76,12 @@ export default function TrainingPath({}: TrainingPathProps) {
     }
   };
 
+  useEffect(() => {
+    let trainingType = user?.onboarding?.trainingPlan?.trainingType!;
+    if (trainingType === "structured") setSelected(0);
+    if (trainingType === "freestyle") setSelected(1);
+  }, [user]);
+
   return (
     <OnboardingTemplate
       headerTitle="Choose your training path"
@@ -112,8 +91,13 @@ export default function TrainingPath({}: TrainingPathProps) {
       handleBackClick={handleBackClick}
     >
       <div className="flex flex-wrap gap-6 mt-12 w-full max-md:mt-10 max-md:max-w-full">
-        {trainingOptions.map((option, index) => (
-          <Card key={index} {...option} handleClick={handleCardClick} />
+        {trainingOptions?.map((option, index) => (
+          <Card
+            key={index}
+            isSelected={selected === index}
+            {...option}
+            handleClick={handleCardClick}
+          />
         ))}
       </div>
     </OnboardingTemplate>

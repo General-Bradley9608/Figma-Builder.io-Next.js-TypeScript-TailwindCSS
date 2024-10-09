@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useForm } from "react-hook-form";
@@ -17,7 +17,6 @@ export default function IndustryForm() {
   const { theme } = useTheme();
   const [selectedIndustry, setSelectedIndustry] = useState("");
   const { user, fetchMe } = useAuth();
-
   const {
     handleSubmit,
     formState: { errors },
@@ -54,6 +53,14 @@ export default function IndustryForm() {
       console.error("Failed to update user data");
     }
   }, [selectedIndustry, router]);
+
+  useEffect(() => {
+    if (user?.onboarding?.industry) {
+      setSelectedIndustry(user.onboarding.industry);
+    } else {
+      setSelectedIndustry("");
+    }
+  }, [user]);
 
   return (
     <OnboardingTemplate

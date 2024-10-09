@@ -37,7 +37,10 @@ export const Dropdown: React.FC<Props> = ({
           <input
             name={name}
             type="text"
-            className={cn("w-full px-4 py-2 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-transparent placeholder-muted", inputClassName)}
+            className={cn(
+              "w-full px-4 py-2 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-transparent placeholder-muted",
+              inputClassName
+            )}
             placeholder={placeholder}
             value={selectedOption}
             onChange={(e) => onSelect(e.target.value)}

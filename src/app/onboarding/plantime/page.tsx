@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
@@ -69,6 +69,22 @@ export default function PracticeTimePlanner() {
   const handleBackClick = () => {
     router.push("/onboarding/trainingpath");
   };
+
+  useEffect(() => {
+    if (
+      user?.onboarding?.trainingPlan?.hours &&
+      user?.onboarding?.trainingPlan?.mins &&
+      user?.onboarding?.trainingPlan?.per
+    ) {
+      setSelectedHour(user?.onboarding?.trainingPlan?.hours.toString());
+      setSelectedMinute(user?.onboarding?.trainingPlan?.mins.toString());
+      setSelectedWeek(user?.onboarding?.trainingPlan?.per);
+    } else {
+      setSelectedHour("");
+      setSelectedMinute("");
+      setSelectedWeek("");
+    }
+  }, [user]);
 
   return (
     <OnboardingTemplate

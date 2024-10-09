@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import { set, useForm } from "react-hook-form";
@@ -90,6 +90,14 @@ export default function InterviewChallenges() {
       console.error("Error:", error);
     }
   }, [selectedChallenges, user]);
+
+  useEffect(() => {
+    if (user?.onboarding?.challenge) {
+      setSelectedChallenges(user.onboarding.challenge);
+    } else {
+      setSelectedChallenges([]);
+    }
+  }, [user]);
 
   return (
     <OnboardingTemplate
