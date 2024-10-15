@@ -4,9 +4,7 @@ import React, { useState, useEffect } from "react";
 import Footer from "@/components/Footer/Footer";
 import Testimonial from "../_components/Testimonial";
 import SignUpForm from "../_components/SignUpForm";
-import SocialButtons from "../_components/SocialButtons/SocialButtons";
 import Header from "@/components/Header/Header";
-import Link from "next/link";
 
 interface SignUpPageProps {}
 
@@ -44,22 +42,6 @@ const SignUpPage: React.FC<SignUpPageProps> = () => {
           <main className="flex flex-col items-center px-8 w-full max-md:px-5 max-md:max-w-full">
             <div className="flex flex-col max-w-full w-[416px]">
               <SignUpForm />
-              <div className="flex flex-col mt-4 w-full">
-                <div className="flex gap-4 items-center mt-4 w-full text-sm leading-none text-center text-gray-500">
-                  <div className="flex-1 shrink self-stretch my-auto h-px border border-gray-100 border-solid basis-0 w-[150px]" />
-                  <div className="self-stretch my-auto">Or</div>
-                  <div className="flex-1 shrink self-stretch my-auto h-px border border-gray-100 border-solid basis-0 w-[150px]" />
-                </div>
-              </div>
-              <SocialButtons />
-              <div className="flex gap-1 justify-center mt-4 w-full text-sm">
-                <p className="text-secondary-foreground">
-                  Already have an account?{" "}
-                </p>
-                <Link href="/login" className="text-primary">
-                  Log in
-                </Link>
-              </div>
             </div>
           </main>
           <Footer />

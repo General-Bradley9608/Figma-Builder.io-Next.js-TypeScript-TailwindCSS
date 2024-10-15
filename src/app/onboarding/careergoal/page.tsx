@@ -78,7 +78,7 @@ export default function GoalForm() {
         <DecorateButton
           icon="🚀"
           name="Boom! You got this!"
-          className="-top-12 -right-0 rotate-[0.18rad] md:-top-20 md:-right-10 transition-all"
+          className="-top-12 -right-0 rotate-[0.18rad] md:-top-20 md:-right-10 transition-all dark:bg-transparent"
         />
       }
     >

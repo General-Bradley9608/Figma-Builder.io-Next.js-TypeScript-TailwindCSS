@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Mail } from "lucide-react";
 
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
@@ -40,12 +41,7 @@ export default function Welcome() {
                   {userName}! 🎉
                 </p>
                 <div className="flex gap-2 items-center self-center mt-4 text-base font-medium leading-none whitespace-nowrap text-accent-foreground">
-                  <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/4d9c3fabc6f34b4673244f30a59d62b0385c701e9c8ee4c41ad6a4ee6546e110?placeholderIfAbsent=true&apiKey=d9bf0d577dc74ba79e889f5b65cafa8b"
-                    className="object-contain shrink-0 self-stretch my-auto w-6 aspect-square"
-                    alt=""
-                  />
+                  <Mail className="w-4 h-4" />
                   <span>{userEmail}</span>
                 </div>
               </div>

@@ -1,12 +1,13 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
-import { useForm, FieldValues } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { AuthTemplate } from "./AuthTemplate";
 import { useAuth } from "@/providers/Auth";
-import { Button, LinkButton } from "@/components/Button";
+import SocialButtons from "./SocialButtons/SocialButtons";
+import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { Checkbox } from "@/components/Checkbox";
 
@@ -37,7 +38,7 @@ export default function LoginForm() {
   } = useForm<loginFormData>({
     defaultValues: {
       email: "",
-      password: ""
+      password: "",
     },
   });
 
@@ -47,9 +48,10 @@ export default function LoginForm() {
         await login(data);
         if (redirect?.current) router.push(redirect.current as string);
         else router.push("/onboarding");
-      }
-      catch(_) {
-        setError("There was an error with the credentials provided. Please try again.");
+      } catch (_) {
+        setError(
+          "There was an error with the credentials provided. Please try again."
+        );
       }
     },
     [login, router]
@@ -124,6 +126,22 @@ export default function LoginForm() {
               </Button>
             </div>
           </form>
+          <div className="flex flex-col mt-4 w-full">
+            <div className="flex gap-4 items-center mt-4 w-full text-sm text-center text-gray-500">
+              <div className="flex-1 h-px border border-gray-100 border-solid basis-0 w-[150px]" />
+              <div>Or</div>
+              <div className="flex-1 h-px border border-gray-100 border-solid basis-0 w-[150px]" />
+            </div>
+          </div>
+          <SocialButtons accountType={accountType} />
+          <div className="flex gap-1 justify-center mt-4 w-full text-sm">
+            <p className="text-secondary-foreground">
+              Already have an account?{" "}
+            </p>
+            <Link href="/login" className="text-primary">
+              Log in
+            </Link>
+          </div>
         </div>
       }
     />

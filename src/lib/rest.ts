@@ -31,7 +31,6 @@ export const rest = async (
     // }]))
 
     const { errors, user } = await res.json();
-    // console.log(res)
 
     if (errors) {
       throw new Error(errors[0].message);

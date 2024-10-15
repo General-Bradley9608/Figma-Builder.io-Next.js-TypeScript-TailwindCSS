@@ -38,7 +38,7 @@ const OnboardingTemplate: React.FC<{
           <FormBody
             title={bodyTitle}
             titleClassName={bodyTitleClassName}
-            decorate={ decorateChildren }
+            decorate={decorateChildren}
           >
             {children}
           </FormBody>

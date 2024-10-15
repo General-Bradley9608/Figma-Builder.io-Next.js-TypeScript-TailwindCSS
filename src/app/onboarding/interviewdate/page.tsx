@@ -93,7 +93,7 @@ export default function PracticeTimePlanner() {
         <DecorateButton
           icon="💪"
           name="Power Move!"
-          className="-top-14 -right-0 -rotate-[0.18rad] lg:-top-5 lg:-right-44 transition-al"
+          className="-top-14 -right-0 -rotate-[0.18rad] lg:-top-5 lg:-right-44 transition-al dark:bg-transparent"
         />
       }
     >

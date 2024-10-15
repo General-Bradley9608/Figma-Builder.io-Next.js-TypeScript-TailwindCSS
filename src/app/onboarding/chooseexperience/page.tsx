@@ -17,6 +17,8 @@ export default function ChooseWork({}: ChooseWorkProps) {
   const { user, fetchMe } = useAuth();
   const [selected, setSelected] = useState<number>();
 
+  console.log(user);
+
   const personas = [
     {
       image: theme === "dark" ? "/09-1.png" : "/09.png",
@@ -55,6 +57,7 @@ export default function ChooseWork({}: ChooseWorkProps) {
       personaExperience = "professional";
     else personaExperience = "noJob";
     try {
+      console.log("ggggggggggggggggggggggggggggggggg", user);
       const req = await fetch(
         `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/users/${user?.id}`,
         {
@@ -84,7 +87,6 @@ export default function ChooseWork({}: ChooseWorkProps) {
     if (persona === "student") setSelected(0);
     if (persona === "professional") setSelected(1);
     if (persona === "noJob") setSelected(2);
-    console.log(user);
   }, [user]);
 
   return (

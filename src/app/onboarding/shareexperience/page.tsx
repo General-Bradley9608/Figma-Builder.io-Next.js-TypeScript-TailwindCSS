@@ -52,27 +52,44 @@ const UploadExperience: React.FC = () => {
         alert("Please upload a file.");
         return;
       }
+
+      const formData = new FormData();
+      formData.append("cv", uploadedFile);
+
       const req = await fetch(
-        `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/users/${user?.id}`,
+        `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/files`,
         {
-          method: "PATCH",
+          method: "POST",
           credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            onboarding: {
-              cv: uploadedFile,
-            },
-          }),
+          body: formData,
         }
       );
-      if (req.ok) {
-        fetchMe();
-        router.push("/onboarding/interviewchallenge");
-      } else {
-        console.error("Error:", req.statusText);
-      }
+
+      console.log(req);
+      // const req = await fetch(
+      //   `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/users/${user?.id}`,
+      //   {
+      //     method: "PATCH",
+      //     credentials: "include",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify({
+      //       onboarding: {
+      //         cv: uploadedFile,
+      //       },
+      //     }),
+      //   }
+      // );
+      // if (req.ok) {
+      //   fetchMe();
+      //   router.push("/onboarding/interviewchallenge");
+      // } else {
+      //   console.error("Error:", req.statusText);
+      // }
     } catch (error) {
       console.error("Error:", error);
     }

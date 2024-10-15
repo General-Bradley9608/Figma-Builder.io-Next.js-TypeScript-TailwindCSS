@@ -97,7 +97,7 @@ export default function PracticeTimePlanner() {
         <DecorateButton
           icon="💫"
           name="Just Magic!"
-          className="-top-12 -right-0 -rotate-[0.18rad] md:-top-10 md:-right-40 transition-al"
+          className="-top-12 -right-0 -rotate-[0.18rad] md:-top-10 md:-right-40 transition-al dark:bg-transparent"
         />
       }
     >

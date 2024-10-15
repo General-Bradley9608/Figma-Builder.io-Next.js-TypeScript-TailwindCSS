@@ -2,11 +2,14 @@
 
 import { useState, useRef, useCallback } from "react";
 import { AuthTemplate } from "./AuthTemplate";
-import { useForm, FieldValues } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Eye, EyeOff } from "lucide-react";
+import Link from "next/link";
 
 import { useAuth } from "@/providers/Auth";
-import { Button, LinkButton } from "@/components/Button";
+import SocialButtons from "./SocialButtons/SocialButtons";
+import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { Checkbox } from "@/components/Checkbox";
 
@@ -28,6 +31,7 @@ export default function SignupForm() {
 
   const [error, setError] = useState<string | null>(null);
   const [accountType, setAccountType] = useState("individual");
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
@@ -41,15 +45,34 @@ export default function SignupForm() {
     },
   });
 
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
+
   const onSubmit = useCallback(
     async (data: singupFormData) => {
       try {
         await create(data);
         if (redirect?.current) router.push(redirect.current as string);
         else router.push("/login");
-      }
-      catch(_) {
-        setError("There was an error with the credentials provided. Please try again.");
+
+        // const req = await fetch(
+        //   `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/users/`,
+        //   {
+        //     method: "POST",
+        //     credentials: "include",
+        //     headers: {
+        //       "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify(data),
+        //   }
+        // );
+        // const { error, user } = await req.json();
+        // console.log(user);
+      } catch (_) {
+        setError(
+          "There was an error with the credentials provided. Please try again."
+        );
       }
     },
     [create, router]
@@ -116,11 +139,13 @@ export default function SignupForm() {
               <Input
                 name="password"
                 label="Password"
-                type="password"
+                type={showPassword ? "text" : "password"}
                 placeholder="Create a password"
                 register={register}
                 required={true}
                 error={errors.password}
+                icon={showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                onIconClick={togglePasswordVisibility}
               />
             </div>
             <div className="flex flex-col w-full mt-2">
@@ -152,6 +177,22 @@ export default function SignupForm() {
               </Button>
             </div>
           </form>
+          <div className="flex flex-col mt-4 w-full">
+            <div className="flex gap-4 items-center mt-4 w-full text-sm text-center text-gray-500">
+              <div className="flex-1 h-px border border-gray-100 border-solid basis-0 w-[150px]" />
+              <div>Or Sign Up with</div>
+              <div className="flex-1 h-px border border-gray-100 border-solid basis-0 w-[150px]" />
+            </div>
+          </div>
+          <SocialButtons accountType={accountType} />
+          <div className="flex gap-1 justify-center mt-4 w-full text-sm">
+            <p className="text-secondary-foreground">
+              Already have an account?{" "}
+            </p>
+            <Link href="/login" className="text-primary">
+              Log in
+            </Link>
+          </div>
         </div>
       }
     />

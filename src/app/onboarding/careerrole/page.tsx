@@ -87,7 +87,7 @@ export default function RoleForm() {
         <DecorateButton
           icon="🔥"
           name="Whoa, You're on Fire!"
-          className="-top-12 -left-0 -rotate-[0.18rad] md:-top-20 md:left-0 transition-all"
+          className="-top-12 -left-0 -rotate-[0.18rad] md:-top-20 md:left-0 transition-all dark:bg-transparent"
         />
       }
     >

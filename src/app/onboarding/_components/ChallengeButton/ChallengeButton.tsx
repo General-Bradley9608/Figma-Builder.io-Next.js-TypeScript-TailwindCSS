@@ -40,7 +40,7 @@ export default function ChallengeSelector({
           onClick={() => onChallengeToggle(challenge.text)}
           className={`flex gap-2 self-stretch px-5 py-3 my-auto bg-primary-foreground text-accent-foreground dark:bg-[#9FA0F5] dark:text-primary-foreground border border-solid min-h-[48px] rounded-[32px] hover:bg-gray-100 dark:hover:bg-gray-300 cursor-pointer ${
             selectedChallenges.includes(challenge.text)
-              ? "border-indigo-600 bg-indigo-600 bg-opacity-10 dark:bg-gray-500"
+              ? "border-indigo-600 bg-indigo-600 bg-opacity-10 dark:bg-gray-400"
               : "border-gray-200"
           }`}
         >

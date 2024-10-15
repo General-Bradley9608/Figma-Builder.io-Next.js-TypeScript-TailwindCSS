@@ -24,8 +24,8 @@ import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 const Context = createContext({} as AuthContext);
 
-const SUCCESS_REDIRECT_PATH = "/onboarding" // TODO: change to "/dashboard"
-const FAIL_REDIRECT_PATH = "/login"
+const SUCCESS_REDIRECT_PATH = "/onboarding"; // TODO: change to "/dashboard"
+const FAIL_REDIRECT_PATH = "/login";
 
 export const AuthProvider: React.FC<{
   children: React.ReactNode;
@@ -67,8 +67,8 @@ export const AuthProvider: React.FC<{
           `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/users/login`,
           args
         );
+
         setUser(user);
-        console.log(user);
         return user;
       }
 
@@ -113,17 +113,15 @@ export const AuthProvider: React.FC<{
       "/forgotpassword",
       "/resetpassword",
     ];
-    const exactPaths = [
-      "/",
-    ]
-    const isAuthPath = authPaths.some(path => currentPath.startsWith(path))
+    const exactPaths = ["/"];
+    const isAuthPath = authPaths.some((path) => currentPath.startsWith(path));
     const isExactPath = exactPaths.includes(currentPath);
-    
+
     if (me && isAuthPath) router.push(SUCCESS_REDIRECT_PATH);
     if (!me && !isAuthPath && !isExactPath) {
       router.push(`${FAIL_REDIRECT_PATH}?redirect=${currentPath}`);
     }
-  }
+  };
 
   const fetchMe = async () => {
     if (api === "rest") {
@@ -134,7 +132,7 @@ export const AuthProvider: React.FC<{
           method: "GET",
         }
       );
-      autoRedirect(me)
+      autoRedirect(me);
       setUser(me);
     }
 
@@ -148,7 +146,7 @@ export const AuthProvider: React.FC<{
         }
       }`);
 
-      autoRedirect(meUser.user)
+      autoRedirect(meUser.user);
       setUser(meUser.user);
     }
   };

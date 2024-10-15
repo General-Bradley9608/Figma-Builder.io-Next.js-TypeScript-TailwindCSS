@@ -32,9 +32,17 @@ export default function WelcomePage() {
           </button>
         </div>
         {theme === "dark" ? (
-          <FooterImage path="/01-1.png" alt="" />
+          <FooterImage
+            path="/01-1.png"
+            alt=""
+            // emoji={{ symbol: "👋", label: "Confused emoji" }}
+          />
         ) : (
-          <FooterImage path="/01.png" alt="" />
+          <FooterImage
+            path="/01.png"
+            alt=""
+            // emoji={{ symbol: "👋", label: "Confused emoji" }}
+          />
         )}
       </div>
     </main>

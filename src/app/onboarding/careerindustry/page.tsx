@@ -73,7 +73,7 @@ export default function IndustryForm() {
         <DecorateButton
           icon="👀"
           name="Ooolala"
-          className="-top-12 -right-4 -rotate-[0.18rad] md:-top-6 md:-right-32 transition-all"
+          className="-top-12 -right-4 -rotate-[0.18rad] md:-top-6 md:-right-32 transition-all dark:bg-transparent"
         />
       }
     >

@@ -15,23 +15,23 @@ const config: Config = {
       },
       colors: {
         primary: {
-          DEFAULT: 'var(--primary)',
-          foreground: 'var(--primary-foreground)',
+          DEFAULT: "var(--primary)",
+          foreground: "var(--primary-foreground)",
         },
         secondary: {
-          DEFAULT: 'var(--secondary)',
-          foreground: 'var(--secondary-foreground)',
+          DEFAULT: "var(--secondary)",
+          foreground: "var(--secondary-foreground)",
         },
         destructive: {
-          DEFAULT: 'var(--destructive)',
-          foreground: 'var(--destructive-foreground)',
+          DEFAULT: "var(--destructive)",
+          foreground: "var(--destructive-foreground)",
         },
         accent: {
-          DEFAULT: 'var(--accent)',
-          foreground: 'var(--accent-foreground)',
+          DEFAULT: "var(--accent)",
+          foreground: "var(--accent-foreground)",
         },
-        link: 'var(--link)',
-        muted: 'var(--muted)',
+        link: "var(--link)",
+        muted: "var(--muted)",
       },
     },
   },
