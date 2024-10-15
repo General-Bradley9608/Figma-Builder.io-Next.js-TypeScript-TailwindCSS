@@ -6,10 +6,10 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import { AuthTemplate } from "./AuthTemplate";
 import { useAuth } from "@/providers/Auth";
-import SocialButtons from "./SocialButtons/SocialButtons";
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { Checkbox } from "@/components/Checkbox";
+import SocialButtons from "./SocialButtons/SocialButtons";
 
 import Link from "next/link";
 
